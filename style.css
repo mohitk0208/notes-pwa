@@ -1,0 +1,86 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+:root {
+    --site-bg-color: rgb(255, 255, 255);
+    --notepad-bg-color:rgba(0,0,0,0.05);
+}
+
+body {
+	font-family: "Itim", cursive;
+    font-size: larger;
+    background-color: var(--site-bg-color) ;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.app-container {
+	width: 100%;
+	margin-top: 2rem;
+	background-color: rgba(0, 0, 0, 0.05);
+	padding: 0.5rem;
+    border-radius: 5px;
+}
+
+
+#notepad {
+    width: 95%;
+    height: 40rem;
+    display: block;
+    font-family: "Itim",cursive;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.center {
+	margin: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+	.app-container {
+		width: 90%;
+	}
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	.app-container {
+		width: 80%;
+	}
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+	.app-container {
+		width: 75%;
+	}
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+	.app-container {
+		width: 65%;
+	}
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+}
