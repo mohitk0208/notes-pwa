@@ -1,0 +1,10 @@
+{
+	"short_name": "Notes",
+	"name": "Notes-PWA",
+	"description": "A Simple and light weight note making PWA",
+	"start_url": "/?source=pwa",
+	"background_color": "#b8b8b8",
+	"display": "standalone",
+	"scope": "/",
+	"theme_color": "#872bac"
+}
