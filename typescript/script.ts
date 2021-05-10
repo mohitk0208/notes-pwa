@@ -1,4 +1,10 @@
 const body = document.querySelector("body") as HTMLBodyElement
+const notepad = document.getElementById("notepad") as HTMLTextAreaElement
+const fileNameElement = document.getElementById("filename") as HTMLHeadingElement
+
+
+
+let fileName = fileNameElement.innerText
 
 // set the mode according to the system preference
 if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -18,4 +24,8 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e)
     console.info("ACTIVATED LIGHT MODE")
     return body.classList.remove("dark")
 
+})
+
+fileNameElement.addEventListener("input",(e) => {
+    fileName = fileNameElement.innerText
 })

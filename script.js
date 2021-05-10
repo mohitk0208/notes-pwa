@@ -1,4 +1,7 @@
 var body = document.querySelector("body");
+var notepad = document.getElementById("notepad");
+var fileNameElement = document.getElementById("filename");
+var fileName = fileNameElement.innerText;
 // set the mode according to the system preference
 if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
     //dark mode
@@ -13,4 +16,7 @@ window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", fun
     }
     console.info("ACTIVATED LIGHT MODE");
     return body.classList.remove("dark");
+});
+fileNameElement.addEventListener("input", function (e) {
+    fileName = fileNameElement.innerText;
 });
