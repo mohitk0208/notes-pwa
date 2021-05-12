@@ -1,6 +1,5 @@
 const cachesName = "notesCaches_v1";
 const appShellfiles = [
-    "/notes-pwa/",
     "/notes-pwa/index.html",
     "/notes-pwa/indexedDb.js",
     "/notes-pwa/Note.js",
