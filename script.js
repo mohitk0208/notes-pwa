@@ -1,11 +1,13 @@
 import Note from "./Note.js";
+import { addOrUpdateNote, getNote } from "./indexedDb.js";
 
 const body = document.querySelector("body");
 const indicator = document.getElementById("save-indicator");
 const notepad = document.getElementById("notepad");
 const fileNameElement = document.getElementById("filename");
 
-let note = new Note(fileNameElement.innerText, notepad.value);
+// let note = new Note(fileNameElement.innerText, notepad.value);
+let note = null;
 let timeOut = null;
 
 const COLORS = {
@@ -13,31 +15,57 @@ const COLORS = {
 	GREEN: "hsl(120, 100%, 25%)",
 };
 
+console.log(localStorage.getItem("currentFileId"));
+
+const currentFileId = localStorage.getItem("currentFileId")
+
+if(currentFileId) {
+    getNote(currentFileId).then(n => {
+        note = n
+        fileNameElement.innerText = n.name
+        notepad.value = n.content
+    })
+}
+else {
+    fileNameElement.innerText = "something"
+    note = new Note(fileNameElement.innerText,notepad.innerText)
+    setIndicatorToSaving()
+    save()
+    setindicatorToSaved()
+    localStorage.setItem("currentFileId",note.id)
+}
+
+(async () => {
+	let x = await getNote(currentFileId || "");
+	console.log(x);
+})();
+
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
 
 fileNameElement.addEventListener("input", function (e) {
-	note.setName(fileNameElement.innerText);
+	note.name =fileNameElement.innerText;
 
 	setIndicatorToSaving();
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
 notepad.addEventListener("input", () => {
-    note.setContent(notepad.value);
-    setIndicatorToSaving()
+    note.content = notepad.value;
+    
+	setIndicatorToSaving();
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
-
-
-
 function save() {
-
-	console.log(note);
-	timeOut = null;
-
-	setindicatorToSaved();
+	addOrUpdateNote(note)
+		.then(() => {
+			timeOut = null;
+			setindicatorToSaved();
+		})
+		.catch((err) => {
+			console.log(err);
+		});
 }
 
 function SetDarkModeAndAddEventListener() {
