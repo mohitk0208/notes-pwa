@@ -1,6 +1,15 @@
 import Note from "./Note.js";
 import { addOrUpdateNote, getNote } from "./indexedDb.js";
 
+if (navigator.serviceWorker) {
+	window.addEventListener("load", () => {
+		navigator.serviceWorker
+			.register("./sw_cached_site.js")
+			.then((reg) => console.log("Service Worker: Registered"))
+			.catch((err) => console.error(`Service Worker: Error ${err}`));
+	});
+}
+
 const body = document.querySelector("body");
 const indicator = document.getElementById("save-indicator");
 const notepad = document.getElementById("notepad");
@@ -21,7 +30,7 @@ const currentFileId = localStorage.getItem("currentFileId");
 
 if (currentFileId) {
 	getNote(currentFileId).then((n) => {
-        console.log("this",n);
+		console.log("this", n);
 		if (n) {
 			note = n;
 			fileNameElement.innerText = n.name;
