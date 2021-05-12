@@ -1,7 +1,25 @@
 const cachesName = "notesCaches_v1";
+const appShellfiles = [
+    "/notes-pwa/",
+    "/notes-pwa/index.html",
+    "/notes-pwa/indexedDb.js",
+    "/notes-pwa/Note.js",
+    "/notes-pwa/style.css",
+    "/notes-pwa/script.js",
+    "/notes-pwa/",
+    "https://fonts.gstatic.com/s/itim/v5/0nknC9ziJOYe8ANAkA.woff2",
+    "/notes-pwa/manifest.webmanifest"
+]
 
 self.addEventListener("install", () => {
-	console.log("Service Worker: Installed");
+    console.log("Service Worker: Installed");
+    
+    e.waitUntil((async () => {
+        const cache = await caches.open(cachesName);
+        console.log("Service Worker: Caching all, app shell");
+        await cache.addAll(appShellfiles)
+    })())
+
 });
 
 self.addEventListener("activate", (e) => {
