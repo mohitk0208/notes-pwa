@@ -17,22 +17,31 @@ const COLORS = {
 
 console.log(localStorage.getItem("currentFileId"));
 
-const currentFileId = localStorage.getItem("currentFileId")
+const currentFileId = localStorage.getItem("currentFileId");
 
-if(currentFileId) {
-    getNote(currentFileId).then(n => {
-        note = n
-        fileNameElement.innerText = n.name
-        notepad.value = n.content
-    })
-}
-else {
-    fileNameElement.innerText = "something"
-    note = new Note(fileNameElement.innerText,notepad.innerText)
-    setIndicatorToSaving()
-    save()
-    setindicatorToSaved()
-    localStorage.setItem("currentFileId",note.id)
+if (currentFileId) {
+	getNote(currentFileId).then((n) => {
+        console.log("this",n);
+		if (n) {
+			note = n;
+			fileNameElement.innerText = n.name;
+			notepad.value = n.content;
+		} else {
+			fileNameElement.innerText = "something";
+			note = new Note(fileNameElement.innerText, notepad.innerText);
+			setIndicatorToSaving();
+			save();
+			setindicatorToSaved();
+			localStorage.setItem("currentFileId", note.id);
+		}
+	});
+} else {
+	fileNameElement.innerText = "something";
+	note = new Note(fileNameElement.innerText, notepad.innerText);
+	setIndicatorToSaving();
+	save();
+	setindicatorToSaved();
+	localStorage.setItem("currentFileId", note.id);
 }
 
 (async () => {
@@ -44,15 +53,15 @@ else {
 SetDarkModeAndAddEventListener();
 
 fileNameElement.addEventListener("input", function (e) {
-	note.name =fileNameElement.innerText;
+	note.name = fileNameElement.innerText;
 
 	setIndicatorToSaving();
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
 notepad.addEventListener("input", () => {
-    note.content = notepad.value;
-    
+	note.content = notepad.value;
+
 	setIndicatorToSaving();
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
