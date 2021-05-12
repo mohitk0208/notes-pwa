@@ -34,6 +34,12 @@ body {
 }
 
 
+#save-indicator {
+    width: 100%;
+    height: .5rem;
+    background-color: hsl(120, 100%, 25%);
+}
+
 #notepad {
     width: 95%;
     height: 30rem;
