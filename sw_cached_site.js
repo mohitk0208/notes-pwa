@@ -1,13 +1,13 @@
 const cachesName = "notesCaches_v1";
 const appShellfiles = [
-    "/notes-pwa/index.html",
-    "/notes-pwa/indexedDb.js",
-    "/notes-pwa/Note.js",
-    "/notes-pwa/style.css",
-    "/notes-pwa/script.js",
-    "/notes-pwa/",
+    "/index.html",
+    "/indexedDb.js",
+    "/Note.js",
+    "/style.css",
+    "/script.js",
+    "/",
     "https://fonts.gstatic.com/s/itim/v5/0nknC9ziJOYe8ANAkA.woff2",
-    "/notes-pwa/manifest.webmanifest"
+    "/manifest.webmanifest"
 ]
 
 self.addEventListener("install", (e) => {
