@@ -40,7 +40,6 @@ if (currentFileId) {
 			note = new Note(fileNameElement.innerText, notepad.innerText);
 			setIndicatorToSaving();
 			save();
-			setindicatorToSaved();
 			localStorage.setItem("currentFileId", note.id);
 		}
 	});
@@ -49,7 +48,6 @@ if (currentFileId) {
 	note = new Note(fileNameElement.innerText, notepad.innerText);
 	setIndicatorToSaving();
 	save();
-	setindicatorToSaved();
 	localStorage.setItem("currentFileId", note.id);
 }
 
