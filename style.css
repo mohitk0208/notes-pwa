@@ -149,8 +149,7 @@ body {
 	right: 10%;
 	top: 50%;
 	transform: translateY(-50%);
-	opacity: 0;
-	display: none;
+
 	padding: .5em;
 	font-weight: bold;
 
@@ -165,14 +164,7 @@ body {
 	color: var(--site-bg-color);
 }
 
-.files-container .file:hover .delete-btn {
-	display: block;
-	opacity: 1;
-}
 
-/* .notepad-container.hidden {
-	display: none;
-} */
 
 
 .notepad-container {
@@ -198,6 +190,19 @@ body {
 	height: 0.5rem;
 	background-color: hsl(120, 100%, 25%);
 	border-radius: 2px;
+	margin-bottom: .5em;
+}
+
+.file-head-container {
+	display: flex;
+}
+
+.file-head-container #filename {
+	flex-grow: 1;
+}
+
+.file-head-container .current-delete-btn {
+	padding: .5em 1em;
 }
 
 #notepad {
@@ -264,6 +269,18 @@ body {
 
 	.notepad-container {
 		width: 100%;
+	}
+
+
+	.files-container .file .delete-btn {
+		opacity: 0;
+		display: none;
+	}
+
+
+	.files-container .file:hover .delete-btn {
+		display: block;
+		opacity: 1;
 	}
 }
 
