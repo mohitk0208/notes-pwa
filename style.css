@@ -93,12 +93,31 @@ body {
 
 .options-container {
     width: 100%;
-    /* background-color: grey; */
-    height: 2rem;
-    padding: .5em;
 	border: 1px solid var(--border-color);
 	border-width: 1px 0;
+	padding: .5em;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
 }
+
+.options-container button {
+	padding: .5em;
+}
+
+.options-container .add-btn {
+	background-color: transparent;
+	color: var(--text-color);
+	border: 1px solid var(--text-color);
+	border-radius: 5px;
+	font-weight: bold;
+}
+
+.options-container .add-btn:hover {
+	background-color: var(--text-color);
+	color: var(--site-bg-color);
+}
+
 
 .files-container {
     overflow-y: auto;
@@ -114,6 +133,7 @@ body {
     /* background-color: var(--notepad-bg-color); */
     border: 1px solid var(--border-color);
 	border-width: 0px 0 1px 0;
+	position: relative;
 }
 
 .files-container .file:hover {
@@ -124,6 +144,31 @@ body {
     padding: .4em;
 }
 
+.file .delete-btn {
+	position: absolute;
+	right: 10%;
+	top: 50%;
+	transform: translateY(-50%);
+	opacity: 0;
+	display: none;
+	padding: .5em;
+	font-weight: bold;
+
+	background-color: transparent;
+	border: 1px solid red;
+	border-radius: 5px;
+	color: red;
+}
+
+.file .delete-btn:hover {
+	background-color: red;
+	color: var(--site-bg-color);
+}
+
+.files-container .file:hover .delete-btn {
+	display: block;
+	opacity: 1;
+}
 
 /* .notepad-container.hidden {
 	display: none;
@@ -180,6 +225,11 @@ body {
 
 .text-center {
 	text-align: center;
+}
+
+.remove-btn-style {
+	outline: none;
+	border: none;
 }
 
 /* Small devices (landscape phones, 576px and up) */
