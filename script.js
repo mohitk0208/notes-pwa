@@ -53,6 +53,9 @@ function updateFileList() {
 		const content = notes
 			.reverse()
 			.map((n) => {
+
+				if(n.id === note.id) return createHTMLFile(n,true)
+
 				return createHTMLFile(n);
 			})
 			
@@ -114,17 +117,18 @@ function save() {
 		});
 }
 
-function createHTMLFile(localNote) {
+function createHTMLFile(localNote,selected=false) {
 
 	// _____________div _____________________
 	const div = document.createElement("div")
 	div.classList.add("file")
 	div.setAttribute("data-note-id",localNote.id)
+	div.setAttribute("data-selected",selected)
 
 	div.addEventListener("click",() => {
 		console.log("clicked");
 		openNoteInEditor(localNote)
-
+		updateFileList()
 	})
 
 
@@ -174,7 +178,7 @@ function createHTMLFile(localNote) {
 
 function createNewFileAndOpen() {
 	setIndicatorStatusColor(SAVE_STATUS.SAVING);
-	openNoteInEditor(new Note("something", ""));
+	openNoteInEditor(new Note("untitled", ""));
 	save();
 }
 /**

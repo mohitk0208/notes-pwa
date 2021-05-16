@@ -141,6 +141,7 @@ body {
     background-color: var(--notepad-bg-color);
 }
 
+
 .files-container .file p {
     padding: .4em;
 }
@@ -271,6 +272,11 @@ body {
 	.notepad-container {
 		width: 100%;
 	}
+
+	.files-container .file[data-selected="true"] {
+		background-color: var(--notepad-bg-color);
+	}
+	
 
 
 	.files-container .file .delete-btn {
