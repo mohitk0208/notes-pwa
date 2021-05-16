@@ -1,14 +1,23 @@
 // ALL IMPORT STATEMENTS AT THE TOP
 import Note from "./Note.js";
-import { addOrUpdateNote, deleteNote, getAllNotes, getFileByIndex, getNote,getTotalFiles } from "./indexedDb.js";
+import {
+	addOrUpdateNote,
+	deleteNote,
+	getAllNotes,
+	getFileByIndex,
+	getNote,
+	getTotalFiles,
+} from "./indexedDb.js";
 
 // ALL QUERY SELECTORS
 const body = document.querySelector("body");
+const appContainer = document.querySelector(".app-container");
 const indicator = document.getElementById("save-indicator");
 const notepad = document.getElementById("notepad");
 const fileNameElement = document.getElementById("filename");
 const addFileBtn = document.querySelector(".add-btn");
 const filesContainer = document.querySelector(".files-container");
+const backBtn = document.querySelector(".back-btn")
 
 // if (navigator.serviceWorker) {
 // 	window.addEventListener("load", () => {
@@ -50,20 +59,17 @@ if (currentFileId) {
 // initialize the file list in left panel
 function updateFileList() {
 	getAllNotes().then((notes) => {
-		const content = notes
-			.reverse()
-			.map((n) => {
+		const content = notes.reverse().map((n) => {
+			if (n.id === note.id) return createHTMLFile(n, true);
 
-				if(n.id === note.id) return createHTMLFile(n,true)
+			return createHTMLFile(n);
+		});
 
-				return createHTMLFile(n);
-			})
-			
-			filesContainer.innerHTML = ""
+		filesContainer.innerHTML = "";
 
-			content.forEach(c => {
-				filesContainer.appendChild(c)
-			})
+		content.forEach((c) => {
+			filesContainer.appendChild(c);
+		});
 
 		console.log(content);
 
@@ -75,7 +81,7 @@ function updateFileList() {
 updateFileList();
 
 (async () => {
-	let x = await getFileByIndex((await getTotalFiles()) - 1)
+	let x = await getFileByIndex((await getTotalFiles()) - 1);
 	console.log(x);
 })();
 
@@ -86,12 +92,16 @@ addFileBtn.addEventListener("click", (e) => {
 	updateFileList();
 });
 
+backBtn.addEventListener("click",() => {
+	appContainer.classList.add("left")
+})
+
 fileNameElement.addEventListener("input", function (e) {
 	note.name = fileNameElement.innerText;
 
-	const fileElement = document.querySelector(`p[data-note-id="${note.id}"]`)
+	const fileElement = document.querySelector(`p[data-note-id="${note.id}"]`);
 
-	fileElement.innerText = fileNameElement.innerText
+	fileElement.innerText = fileNameElement.innerText;
 
 	console.log(fileElement);
 
@@ -117,61 +127,57 @@ function save() {
 		});
 }
 
-function createHTMLFile(localNote,selected=false) {
-
+function createHTMLFile(localNote, selected = false) {
 	// _____________div _____________________
-	const div = document.createElement("div")
-	div.classList.add("file")
-	div.setAttribute("data-note-id",localNote.id)
-	div.setAttribute("data-selected",selected)
+	const div = document.createElement("div");
+	div.classList.add("file");
+	div.setAttribute("data-note-id", localNote.id);
+	div.setAttribute("data-selected", selected);
 
-	div.addEventListener("click",() => {
+	div.addEventListener("click", () => {
 		console.log("clicked");
-		openNoteInEditor(localNote)
-		updateFileList()
-	})
 
+		if (appContainer.classList.contains("left"))
+			appContainer.classList.remove("left");
+
+		openNoteInEditor(localNote);
+		updateFileList();
+	});
 
 	// ________________ p ___________________
-	const p = document.createElement("p")
-	p.innerText = localNote.name
-	p.setAttribute("data-note-id",localNote.id)
-
-
+	const p = document.createElement("p");
+	p.innerText = localNote.name;
+	p.setAttribute("data-note-id", localNote.id);
 
 	// _______________button__________________
-	const button = document.createElement("button")
-	button.innerText = "DEL"
-	button.classList.add(...["delete-btn","remove-btn-style"])
-	button.setAttribute("data-note-id",localNote.id)
+	const button = document.createElement("button");
+	button.innerText = "DEL";
+	button.classList.add(...["delete-btn", "remove-btn-style"]);
+	button.setAttribute("data-note-id", localNote.id);
 
-	button.addEventListener("click",async (e) => {
+	button.addEventListener("click", async (e) => {
+		e.stopPropagation(); // to prevent the event bubbling triggering event on th div
 
-		e.stopPropagation() // to prevent the event bubbling triggering event on th div
+		// delete the file
+		await deleteNote(localNote.id);
 
-		// delete the file 
-		await deleteNote(localNote.id)
-
-		const count = await getTotalFiles()
+		const count = await getTotalFiles();
 		console.log(count);
-		console.log("local note",localNote.id);
-		console.log("note",note.id);
+		console.log("local note", localNote.id);
+		console.log("note", note.id);
 
-		if( count === 0 ) createNewFileAndOpen()
-		else if(localNote.id === note.id) {
-			const firstNote = await getFileByIndex(count-1)
+		if (count === 0) createNewFileAndOpen();
+		else if (localNote.id === note.id) {
+			const firstNote = await getFileByIndex(count - 1);
 
-			openNoteInEditor(firstNote)
+			openNoteInEditor(firstNote);
 		}
 
-		updateFileList()
+		updateFileList();
+	});
 
-
-	})
-
-
-	div.appendChild(p)
-	div.appendChild(button)
+	div.appendChild(p);
+	div.appendChild(button);
 
 	return div;
 }
@@ -186,7 +192,7 @@ function createNewFileAndOpen() {
  * @param {Note} n note object
  */
 function openNoteInEditor(n) {
-	console.log("global note",n.id);
+	console.log("global note", n.id);
 	note = n; // set the global note object
 	fileNameElement.innerText = n.name;
 	notepad.value = n.content;
