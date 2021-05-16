@@ -1,6 +1,6 @@
 // ALL IMPORT STATEMENTS AT THE TOP
 import Note from "./Note.js";
-import { addOrUpdateNote, getNote } from "./indexedDb.js";
+import { addOrUpdateNote, getAllNotes, getNote } from "./indexedDb.js";
 
 // ALL QUERY SELECTORS
 const body = document.querySelector("body");
@@ -51,7 +51,7 @@ if (currentFileId) {
 }
 
 (async () => {
-	let x = await getNote(currentFileId || "");
+	let x = await getAllNotes();
 	console.log(x);
 })();
 
