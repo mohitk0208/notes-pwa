@@ -17,7 +17,8 @@ const notepad = document.getElementById("notepad");
 const fileNameElement = document.getElementById("filename");
 const addFileBtn = document.querySelector(".add-btn");
 const filesContainer = document.querySelector(".files-container");
-const backBtn = document.querySelector(".back-btn")
+const backBtn = document.querySelector(".back-btn");
+const currentDeleteBtn = document.querySelector(".current-delete-btn");
 
 // if (navigator.serviceWorker) {
 // 	window.addEventListener("load", () => {
@@ -85,6 +86,8 @@ updateFileList();
 	console.log(x);
 })();
 
+// ________________________________________________________________________
+
 // ALL EVENT LISTENERS HERE....
 
 addFileBtn.addEventListener("click", (e) => {
@@ -92,10 +95,10 @@ addFileBtn.addEventListener("click", (e) => {
 	updateFileList();
 });
 
-backBtn.addEventListener("click",() => {
-	save()
-	appContainer.classList.add("left")
-})
+backBtn.addEventListener("click", () => {
+	save();
+	appContainer.classList.add("left");
+});
 
 fileNameElement.addEventListener("input", function (e) {
 	note.name = fileNameElement.innerText;
@@ -117,6 +120,13 @@ notepad.addEventListener("input", () => {
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
+currentDeleteBtn.addEventListener("click", async () => {
+	await deleteAndUpdateEnvironment(note.id);
+	appContainer.classList.add("left")
+});
+
+// __________________________________________________________________________________
+
 function save() {
 	addOrUpdateNote(note)
 		.then(() => {
@@ -135,15 +145,14 @@ function createHTMLFile(localNote, selected = false) {
 	div.setAttribute("data-note-id", localNote.id);
 	div.setAttribute("data-selected", selected);
 
-	div.addEventListener("click",async () => {
+	div.addEventListener("click", async () => {
 		console.log("clicked");
-		save()
+		save();
 
-		if (appContainer.classList.contains("left"))
-			appContainer.classList.remove("left");
-		
-		const updatedNote = await getNote(localNote.id)
+		const updatedNote = await getNote(localNote.id);
 		openNoteInEditor(updatedNote);
+		checkAndRemoveClass(appContainer,"left")
+
 		updateFileList();
 	});
 
@@ -162,27 +171,36 @@ function createHTMLFile(localNote, selected = false) {
 		e.stopPropagation(); // to prevent the event bubbling triggering event on th div
 
 		// delete the file
-		await deleteNote(localNote.id);
-
-		const count = await getTotalFiles();
-		console.log(count);
-		console.log("local note", localNote.id);
-		console.log("note", note.id);
-
-		if (count === 0) createNewFileAndOpen();
-		else if (localNote.id === note.id) {
-			const firstNote = await getFileByIndex(count - 1);
-
-			openNoteInEditor(firstNote);
-		}
-
-		updateFileList();
+		await deleteAndUpdateEnvironment(localNote.id);
 	});
 
 	div.appendChild(p);
 	div.appendChild(button);
 
 	return div;
+}
+
+async function deleteAndUpdateEnvironment(id) {
+	await deleteNote(id);
+
+	const count = await getTotalFiles();
+	console.log(count);
+	console.log("local note", id);
+	console.log("note", note.id);
+
+	if (count === 0) createNewFileAndOpen();
+	else if (id === note.id) {
+		const firstNote = await getFileByIndex(count - 1);
+
+		openNoteInEditor(firstNote);
+	}
+
+	updateFileList();
+}
+
+function checkAndRemoveClass(element, className) {
+	if (element.classList.contains(className))
+		element.classList.remove(className);
 }
 
 function createNewFileAndOpen() {
