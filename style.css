@@ -273,6 +273,10 @@ body {
 		width: 100%;
 	}
 
+	.back-btn {
+		display: none;
+	}
+
 	.files-container .file[data-selected="true"] {
 		background-color: var(--notepad-bg-color);
 	}

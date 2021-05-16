@@ -93,6 +93,7 @@ addFileBtn.addEventListener("click", (e) => {
 });
 
 backBtn.addEventListener("click",() => {
+	save()
 	appContainer.classList.add("left")
 })
 
@@ -134,13 +135,15 @@ function createHTMLFile(localNote, selected = false) {
 	div.setAttribute("data-note-id", localNote.id);
 	div.setAttribute("data-selected", selected);
 
-	div.addEventListener("click", () => {
+	div.addEventListener("click",async () => {
 		console.log("clicked");
+		save()
 
 		if (appContainer.classList.contains("left"))
 			appContainer.classList.remove("left");
-
-		openNoteInEditor(localNote);
+		
+		const updatedNote = await getNote(localNote.id)
+		openNoteInEditor(updatedNote);
 		updateFileList();
 	});
 
