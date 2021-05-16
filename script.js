@@ -19,10 +19,15 @@ const fileNameElement = document.getElementById("filename");
 let note = null;
 let timeOut = null;
 
-const COLORS = {
-	ORANGE: "hsl(39, 100%, 50%)",
-	GREEN: "hsl(120, 100%, 25%)",
-};
+
+const SAVE_STATUS = {
+	SAVING:"hsl(39, 100%, 50%)",
+	SAVED:"hsl(120, 100%, 25%)"
+}
+
+
+// set the mode according to the system preference
+SetDarkModeAndAddEventListener();
 
 console.log(localStorage.getItem("currentFileId"));
 
@@ -31,24 +36,13 @@ const currentFileId = localStorage.getItem("currentFileId");
 if (currentFileId) {
 	getNote(currentFileId).then((n) => {
 		console.log("this", n);
-		if (n) {
-			note = n;
-			fileNameElement.innerText = n.name;
-			notepad.value = n.content;
-		} else {
-			fileNameElement.innerText = "something";
-			note = new Note(fileNameElement.innerText, notepad.innerText);
-			setIndicatorToSaving();
-			save();
-			localStorage.setItem("currentFileId", note.id);
-		}
+
+		if (n) return openNoteInEditor(n);
+
+		createNewFileAndOpen();
 	});
 } else {
-	fileNameElement.innerText = "something";
-	note = new Note(fileNameElement.innerText, notepad.innerText);
-	setIndicatorToSaving();
-	save();
-	localStorage.setItem("currentFileId", note.id);
+	createNewFileAndOpen();
 }
 
 (async () => {
@@ -56,20 +50,17 @@ if (currentFileId) {
 	console.log(x);
 })();
 
-// set the mode according to the system preference
-SetDarkModeAndAddEventListener();
-
 fileNameElement.addEventListener("input", function (e) {
 	note.name = fileNameElement.innerText;
 
-	setIndicatorToSaving();
+	setIndicatorStatusColor(SAVE_STATUS.SAVING)
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
 notepad.addEventListener("input", () => {
 	note.content = notepad.value;
 
-	setIndicatorToSaving();
+	setIndicatorStatusColor(SAVE_STATUS.SAVING)
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
@@ -77,11 +68,28 @@ function save() {
 	addOrUpdateNote(note)
 		.then(() => {
 			timeOut = null;
-			setindicatorToSaved();
+			setIndicatorStatusColor(SAVE_STATUS.SAVED)
 		})
 		.catch((err) => {
 			console.log(err);
 		});
+}
+
+function createNewFileAndOpen() {
+
+	setIndicatorStatusColor(SAVE_STATUS.SAVING)
+	openNoteInEditor(new Note("something", ""));
+	save();
+}
+/**
+ *
+ * @param {Note} n note object
+ */
+function openNoteInEditor(n) {
+	note = n; // set the global note object
+	fileNameElement.innerText = n.name;
+	notepad.value = n.content;
+	localStorage.setItem("currentFileId", n.id);
 }
 
 function SetDarkModeAndAddEventListener() {
@@ -106,13 +114,10 @@ function SetDarkModeAndAddEventListener() {
 		});
 }
 
-function setIndicatorToSaving() {
-	indicator.style.backgroundColor = COLORS.ORANGE;
+function setIndicatorStatusColor(color) {
+	indicator.style.backgroundColor = color
 }
 
-function setindicatorToSaved() {
-	indicator.style.backgroundColor = COLORS.GREEN;
-}
 
 function clearTimeoutIfExistAndCallSaveFunctionWithTimeout() {
 	if (timeOut) clearTimeout(timeOut);
