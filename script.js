@@ -1,5 +1,13 @@
+// ALL IMPORT STATEMENTS AT THE TOP
 import Note from "./Note.js";
 import { addOrUpdateNote, getNote } from "./indexedDb.js";
+
+// ALL QUERY SELECTORS
+const body = document.querySelector("body");
+const indicator = document.getElementById("save-indicator");
+const notepad = document.getElementById("notepad");
+const fileNameElement = document.getElementById("filename");
+const addFileBtn = document.querySelector(".add-btn")
 
 // if (navigator.serviceWorker) {
 // 	window.addEventListener("load", () => {
@@ -10,10 +18,7 @@ import { addOrUpdateNote, getNote } from "./indexedDb.js";
 // 	});
 // }
 
-const body = document.querySelector("body");
-const indicator = document.getElementById("save-indicator");
-const notepad = document.getElementById("notepad");
-const fileNameElement = document.getElementById("filename");
+
 
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note = null;
@@ -50,6 +55,13 @@ if (currentFileId) {
 	console.log(x);
 })();
 
+
+// ALL EVENT LISTENERS HERE....
+
+addFileBtn.addEventListener("click",(e) => {
+	createNewFileAndOpen()
+})
+
 fileNameElement.addEventListener("input", function (e) {
 	note.name = fileNameElement.innerText;
 
@@ -63,6 +75,13 @@ notepad.addEventListener("input", () => {
 	setIndicatorStatusColor(SAVE_STATUS.SAVING)
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
+
+
+
+
+
+
+
 
 function save() {
 	addOrUpdateNote(note)
