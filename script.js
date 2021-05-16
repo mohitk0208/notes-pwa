@@ -1,6 +1,6 @@
 // ALL IMPORT STATEMENTS AT THE TOP
 import Note from "./Note.js";
-import { addOrUpdateNote, getAllNotes, getNote } from "./indexedDb.js";
+import { addOrUpdateNote, deleteNote, getAllNotes, getFileByIndex, getNote,getTotalFiles } from "./indexedDb.js";
 
 // ALL QUERY SELECTORS
 const body = document.querySelector("body");
@@ -56,6 +56,8 @@ function updateFileList() {
 				return createHTMLFile(n);
 			})
 			
+			filesContainer.innerHTML = ""
+
 			content.forEach(c => {
 				filesContainer.appendChild(c)
 			})
@@ -70,7 +72,7 @@ function updateFileList() {
 updateFileList();
 
 (async () => {
-	let x = await getAllNotes();
+	let x = await getFileByIndex((await getTotalFiles()) - 1)
 	console.log(x);
 })();
 
@@ -83,6 +85,12 @@ addFileBtn.addEventListener("click", (e) => {
 
 fileNameElement.addEventListener("input", function (e) {
 	note.name = fileNameElement.innerText;
+
+	const fileElement = document.querySelector(`p[data-note-id="${note.id}"]`)
+
+	fileElement.innerText = fileNameElement.innerText
+
+	console.log(fileElement);
 
 	setIndicatorStatusColor(SAVE_STATUS.SAVING);
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
@@ -106,26 +114,57 @@ function save() {
 		});
 }
 
-function createHTMLFile(note) {
-	const content = `
-		<div class="file">
-			<p>${note.name}</p>
-			<button class="delete-btn remove-btn-style" data-note-id=${note.id} >
-				DEL
-			</button>
-		</div>
-		`;
+function createHTMLFile(localNote) {
 
+	// _____________div _____________________
 	const div = document.createElement("div")
 	div.classList.add("file")
+	div.setAttribute("data-note-id",localNote.id)
 
+	div.addEventListener("click",() => {
+		console.log("clicked");
+		openNoteInEditor(localNote)
+
+	})
+
+
+	// ________________ p ___________________
 	const p = document.createElement("p")
-	p.innerText = note.name
+	p.innerText = localNote.name
+	p.setAttribute("data-note-id",localNote.id)
 
+
+
+	// _______________button__________________
 	const button = document.createElement("button")
 	button.innerText = "DEL"
 	button.classList.add(...["delete-btn","remove-btn-style"])
-	button.setAttribute("data-note-id",note.id)
+	button.setAttribute("data-note-id",localNote.id)
+
+	button.addEventListener("click",async (e) => {
+
+		e.stopPropagation() // to prevent the event bubbling triggering event on th div
+
+		// delete the file 
+		await deleteNote(localNote.id)
+
+		const count = await getTotalFiles()
+		console.log(count);
+		console.log("local note",localNote.id);
+		console.log("note",note.id);
+
+		if( count === 0 ) createNewFileAndOpen()
+		else if(localNote.id === note.id) {
+			const firstNote = await getFileByIndex(count-1)
+
+			openNoteInEditor(firstNote)
+		}
+
+		updateFileList()
+
+
+	})
+
 
 	div.appendChild(p)
 	div.appendChild(button)
@@ -143,6 +182,7 @@ function createNewFileAndOpen() {
  * @param {Note} n note object
  */
 function openNoteInEditor(n) {
+	console.log("global note",n.id);
 	note = n; // set the global note object
 	fileNameElement.innerText = n.name;
 	notepad.value = n.content;
