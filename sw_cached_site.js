@@ -1,4 +1,4 @@
-const cachesName = "notesCaches_v1";
+const cachesName = "notesCaches_v2";
 const appShellfiles = [
     "/index.html",
     "/indexedDb.js",

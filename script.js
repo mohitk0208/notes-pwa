@@ -20,14 +20,14 @@ const filesContainer = document.querySelector(".files-container");
 const backBtn = document.querySelector(".back-btn");
 const currentDeleteBtn = document.querySelector(".current-delete-btn");
 
-// if (navigator.serviceWorker) {
-// 	window.addEventListener("load", () => {
-// 		navigator.serviceWorker
-// 			.register("./sw_cached_site.js")
-// 			.then((reg) => console.log("Service Worker: Registered"))
-// 			.catch((err) => console.error(`Service Worker: Error ${err}`));
-// 	});
-// }
+if (navigator.serviceWorker) {
+	window.addEventListener("load", () => {
+		navigator.serviceWorker
+			.register("./sw_cached_site.js")
+			.then((reg) => console.log("Service Worker: Registered"))
+			.catch((err) => console.error(`Service Worker: Error ${err}`));
+	});
+}
 
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note = null;
