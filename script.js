@@ -116,6 +116,11 @@ fileNameElement.addEventListener("input", function (e) {
 notepad.addEventListener("input", () => {
 	note.content = notepad.value;
 
+	// _______________ AUTO GROW TEXTAREA HEIGHT___________
+	notepad.style.height = "5px"
+	notepad.style.height = (notepad.scrollHeight)+"px"
+	// -------------------------------------------------------
+
 	setIndicatorStatusColor(SAVE_STATUS.SAVING);
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });

@@ -11,15 +11,33 @@
 
 	--light-1:hsl(0, 1%, 90%);
 	--light-2:hsl(0,0%,85%);
-	--light-3:hsl(0, 4%, 90%);
+	--light-3:hsl(0, 0%, 90%);
 	--light-4:hsl(0,0%,75%);
 	--light-5:hsl(0,0%,70%);
 	--light-6:hsl(0,0%,65%);
 
+	--green:green;
+	--red:red;
+
 	
-	--site-bg-color: var(--light-1);
-	--notepad-bg-color: var(--light-4);
-	--text-color: var(--dark-6);
+	--site-bg: var(--light-1);
+	--notepad-bg: var(--light-4);
+	--left-panel-bg:var(--light-2);
+	--search-cont-bg:var(--light-3);
+	--search-cont-input-bg:var(--light-5);
+	--options-cont-bg:var(--light-3);
+	--files-cont-bg:var(--light-2);
+	--file-bg:var(--light-4);
+	--file-hover-bg:var(--light-6);
+	--notepad-cont-bg:var(--light-4);
+	--back-btn-bg:var(--green);
+	--file-head-cont-bg:var(--light-4);
+	--notepad-bg:var(--light-3);
+
+
+
+
+	--text-color: var(--dark-1);
 	--border-color: var(--dark-6)
 }
 
@@ -30,8 +48,8 @@
 }
 
 body.dark {
-	--site-bg-color: var(--dark-1);
-	--notepad-bg-color: var(--dark-3);
+	--site-bg: var(--dark-1);
+	--notepad-bg: var(--dark-3);
 	--text-color: var(--light-6);
 	--border-color:var(--light-6);
 }
@@ -39,7 +57,9 @@ body.dark {
 body {
 	font-family: "Itim", cursive;
 	font-size: larger;
-	background-color: var(--site-bg-color);
+
+	background-color: var(--site-bg);
+	
 	overflow: hidden;
 	color: var(--text-color);
 	caret-color: var(--text-color);
@@ -64,7 +84,6 @@ body {
 
 .app-container {
 	position: absolute;
-	/* background-color: green; */
 	left: 0;
 	right: 0;
 	top: 0;
@@ -75,12 +94,12 @@ body {
 
 .left-panel {
 	width: 100%;
-	background-color: var(--site-bg-color);
+	background-color: var(--left-panel-bg);
 }
 
 .search-container {
 	width: 100%;
-	/* background-color: greenyellow; */
+	background-color: var(--search-cont-bg);
 	padding: 1.5em 0.5em;
 	display: flex;
 	align-items: center;
@@ -94,12 +113,15 @@ body {
 	border-width: 0;
 	border-radius: 5px;
 	outline: none;
-	background-color: var(--notepad-bg-color);
+	background-color: var(--search-cont-input-bg);
 	color: var(--text-color);
 }
 
 .options-container {
 	width: 100%;
+
+	background-color: var(--options-cont-bg);
+
 	border: 1px solid var(--border-color);
 	border-width: 1px 0;
 	padding: 0.5em;
@@ -121,22 +143,24 @@ body {
 }
 
 .options-container .add-btn:hover {
-	background-color: var(--text-color);
-	color: var(--site-bg-color);
+	background-color: var(--back-btn-bg);
+	color: var(--options-cont-bg);
 }
 
 .files-container {
 	overflow-y: auto;
 	width: 100%;
 	height: 100%;
-	/* background-color: var(--notepad-bg-color); */
+	background-color: var(--files-cont-bg);
 }
 
 .files-container .file {
 	width: 100%;
 	min-height: 2rem;
 	padding: 0.5em 1em;
-	/* background-color: var(--notepad-bg-color); */
+	
+	background-color: var(--file-bg);
+
 	border: 1px solid var(--border-color);
 	border-width: 0px 0 1px 0;
 	position: relative;
@@ -144,7 +168,7 @@ body {
 }
 
 .files-container .file:hover {
-	background-color: var(--notepad-bg-color);
+	background-color: var(--file-hover-bg);
 }
 
 .files-container .file p {
@@ -161,35 +185,29 @@ body {
 	font-weight: bold;
 
 	background-color: transparent;
-	border: 1px solid red;
+	border: 1px solid var(--red);
 	border-radius: 5px;
-	color: red;
+	color: var(--red) ;
 }
 
 .file .delete-btn:hover {
-	background-color: red;
-	color: var(--site-bg-color);
+	background-color: var(--red);
+	color: var(--files-cont-bg);
 }
 
 .notepad-container {
 	width: 100%;
-	background-color: var(--notepad-bg-color);
+	height: auto;
+	overflow-y: scroll;
+	background-color: var(--notepad-cont-bg);
 	transition: background-color 200ms ease;
 	padding: 1em;
-}
-
-.notepad-container h3 {
-	padding-top: 1rem;
-	padding-bottom: 1rem;
-	outline: none;
-
-	border-bottom: 1px solid var(--text-color);
 }
 
 #save-indicator {
 	width: 100%;
 	height: 0.5rem;
-	background-color: hsl(120, 100%, 25%);
+	background-color: var(--green);
 	border-radius: 2px;
 	margin-bottom: 0.5em;
 }
@@ -199,7 +217,8 @@ body {
 	padding: 0.5em 1em;
 	margin: 0 0.5em;
 	justify-content: space-between;
-	border-bottom: 1px solid var(--text-color);
+	border-bottom: 1px solid var(--border-color);
+	background-color: var(--file-head-cont-bg);
 }
 
 .file-head-container .current-delete-btn {
@@ -222,19 +241,22 @@ body {
 
 #filename:focus,
 #filename:hover {
-	outline: 1px solid var(--text-color);
+	outline: 1px solid var(--border-color);
 }
 
 #notepad {
-	width: 95%;
-	height: 30rem;
+	width: 98%;
+	min-height: 100%;
+	overflow: hidden;
+	border-radius: 2px;
+
 	display: block;
 	font-family: "Itim", cursive;
 	font-size: 1.2rem;
 	margin-top: 1em;
 	padding: 0.5rem;
-	background-color: transparent;
-	color: inherit;
+	background-color: var(--notepad-bg);
+	color: var(--text-color);
 
 	resize: none; /* remove resize symmbol */
 
@@ -293,7 +315,7 @@ body {
 	}
 
 	.files-container .file[data-selected="true"] {
-		background-color: var(--notepad-bg-color);
+		background-color: var(--file-bg);
 	}
 
 	.files-container .file .delete-btn {
