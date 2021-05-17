@@ -9,36 +9,52 @@
 	--dark-6: hsl(0, 0%, 30%);
 	
 
-	--light-1:hsl(0, 1%, 90%);
+	--light-1:hsl(0, 0%, 100%);
 	--light-2:hsl(0,0%,85%);
 	--light-3:hsl(0, 0%, 90%);
 	--light-4:hsl(0,0%,75%);
 	--light-5:hsl(0,0%,70%);
 	--light-6:hsl(0,0%,65%);
 
+	--orange-1:hsl(50, 73%, 59%);
+	--orange-2:hsl(50, 75%, 68%);
+	--orange-3:hsl(50, 72%, 76%);
+	--orange-4:hsl(49, 71%, 84%);
+	--orange-5:hsl(48, 72%, 90%);
+	--orange-6:hsl(45, 67%, 98%);
+
+
 	--green:green;
 	--red:red;
+	--orange:orange;
 
 	
 	--site-bg: var(--light-1);
-	--notepad-bg: var(--light-4);
-	--left-panel-bg:var(--light-2);
-	--search-cont-bg:var(--light-3);
-	--search-cont-input-bg:var(--light-5);
-	--options-cont-bg:var(--light-3);
-	--files-cont-bg:var(--light-2);
-	--file-bg:var(--light-4);
-	--file-hover-bg:var(--light-6);
-	--notepad-cont-bg:var(--light-4);
+	--left-panel-bg:var(--orange-6);
+
+	--search-cont-bg:transparent;
+	--search-cont-input-bg:var(--light-3);
+	
+	--options-cont-bg:transparent;
+	
+	--files-cont-bg:transparent;
+	--file-bg:transparent;
+	--file-hover-bg:var(--orange-5);
+	--file-selected-bg:var(--orange-5);
+	
+	--notepad-cont-bg:var(--light-1);
+	--notepad-bg: transparent;
+	
+	--file-head-cont-bg:transparent;
+
 	--back-btn-bg:var(--green);
-	--file-head-cont-bg:var(--light-4);
-	--notepad-bg:var(--light-3);
+	
 
 
 
 
 	--text-color: var(--dark-1);
-	--border-color: var(--dark-6)
+	--border-color: var(--orange-1)
 }
 
 * {
@@ -62,9 +78,37 @@ body {
 	
 	overflow: hidden;
 	color: var(--text-color);
-	caret-color: var(--text-color);
+	caret-color: var(--border-color);
 	transition: background-color 200ms ease;
 }
+
+
+
+/* width */
+::-webkit-scrollbar {
+	width: 7px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+	background: var(--left-panel-bg);
+	border-radius: 5px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+	background: var(--orange-4);
+	border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+	background: var(--orange-2);
+  }
+
+
+
+
 
 .app-container .left-panel {
 	display: none;
@@ -99,6 +143,7 @@ body {
 
 .search-container {
 	width: 100%;
+	height: 15%;
 	background-color: var(--search-cont-bg);
 	padding: 1.5em 0.5em;
 	display: flex;
@@ -109,25 +154,25 @@ body {
 .search-container input {
 	width: 80%;
 	min-width: 200px;
-	padding: 1em;
-	border-width: 0;
-	border-radius: 5px;
+	padding: .5em;
+	font-size: 1rem;
+	font-weight: 500;
+	border:none;
 	outline: none;
-	background-color: var(--search-cont-input-bg);
+	background-color: transparent;
+	border-bottom: 1px solid var(--border-color);
 	color: var(--text-color);
 }
 
 .options-container {
 	width: 100%;
+	height: 10%;
 
 	background-color: var(--options-cont-bg);
 
-	border: 1px solid var(--border-color);
 	border-width: 1px 0;
-	padding: 0.5em;
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
+	padding: 1em;
+
 }
 
 .options-container button {
@@ -136,40 +181,40 @@ body {
 
 .options-container .add-btn {
 	background-color: transparent;
-	color: var(--text-color);
-	border: 1px solid var(--text-color);
-	border-radius: 5px;
+	color: var(--border-color);
 	font-weight: bold;
+	font-size: 1rem;
+	border-radius: 5px;
 }
 
-.options-container .add-btn:hover {
-	background-color: var(--back-btn-bg);
-	color: var(--options-cont-bg);
+.options-container .add-btn:hover,
+.options-container .add-btn:focus
+ {
+	background-color: var(--border-color);
+	color: var(--site-bg);
 }
 
 .files-container {
 	overflow-y: auto;
 	width: 100%;
-	height: 100%;
+	height: 75%;
 	background-color: var(--files-cont-bg);
+	overflow-y: scroll;
 }
 
 .files-container .file {
 	width: 100%;
 	min-height: 2rem;
-	padding: 0.5em 1em;
+	padding: 0.2em 1em;
 	
 	background-color: var(--file-bg);
 
-	border: 1px solid var(--border-color);
-	border-width: 0px 0 1px 0;
+	/* border: 1px solid var(--border-color); */
+	/* border-width: 0px 0 1px 0; */
 	position: relative;
 	cursor: pointer;
 }
 
-.files-container .file:hover {
-	background-color: var(--file-hover-bg);
-}
 
 .files-container .file p {
 	padding: 0.4em;
@@ -192,7 +237,7 @@ body {
 
 .file .delete-btn:hover {
 	background-color: var(--red);
-	color: var(--files-cont-bg);
+	color: var(--site-bg);
 }
 
 .notepad-container {
@@ -222,8 +267,21 @@ body {
 }
 
 .file-head-container .current-delete-btn {
-	padding: 0.5em 1em;
+	padding: 0.5em 0.6em;
+	font-weight: bold;
+
+	background-color: transparent;
+	border: 1px solid var(--red);
+	border-radius: 5px;
+	color: var(--red) ;
 }
+
+.file-head-container .current-delete-btn:hover,
+.file-head-container .current-delete-btn:focus {
+	background-color: var(--red);
+	color: var(--site-bg);
+}
+
 
 .file-head-container #filename {
 	/* flex-grow: 1; */
@@ -235,7 +293,9 @@ body {
 	border: none;
 	background-color: transparent;
 	font-size: 1.5rem;
-	color: var(--text-color);
+	color: var(--orange);
+	letter-spacing: 1px;
+	font-weight: bold;
 	padding: 0.2em 0;
 }
 
@@ -314,9 +374,15 @@ body {
 		display: none;
 	}
 
-	.files-container .file[data-selected="true"] {
-		background-color: var(--file-bg);
+	.files-container .file:hover {
+		background-color: var(--file-hover-bg);
 	}
+
+	.files-container .file[data-selected="true"] {
+		background-color: var(--file-selected-bg);
+	}
+
+
 
 	.files-container .file .delete-btn {
 		opacity: 0;
