@@ -9,8 +9,8 @@
 :root {
 	--site-bg-color: rgb(255, 255, 255);
 	--notepad-bg-color: rgba(0, 0, 0, 0.05);
-    --text-color: black;
-    --border-color:grey;
+	--text-color: black;
+	--border-color: grey;
 }
 
 body.dark {
@@ -29,9 +29,6 @@ body {
 	transition: background-color 200ms ease;
 }
 
-
-
-
 .app-container .left-panel {
 	display: none;
 }
@@ -48,61 +45,54 @@ body {
 	display: block;
 }
 
-
-
-
-
-
-
 .app-container {
 	position: absolute;
 	/* background-color: green; */
 	left: 0;
 	right: 0;
 	top: 0;
-    bottom: 0;
-    
-    display: flex;
+	bottom: 0;
+
+	display: flex;
 }
 
 .left-panel {
-    width: 100%;
-    background-color: var(--site-bg-color);
+	width: 100%;
+	background-color: var(--site-bg-color);
 }
 
 .search-container {
-    width: 100%;
-    /* background-color: greenyellow; */
-    padding: 1.5em .5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	width: 100%;
+	/* background-color: greenyellow; */
+	padding: 1.5em 0.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .search-container input {
-    width: 80%;
-    min-width: 200px;
-    padding: 1em;
-    border-width: 0;
-    border-radius: 5px;
-    outline: none;
-    background-color: var(--notepad-bg-color);
-    color: var(--text-color);
-
+	width: 80%;
+	min-width: 200px;
+	padding: 1em;
+	border-width: 0;
+	border-radius: 5px;
+	outline: none;
+	background-color: var(--notepad-bg-color);
+	color: var(--text-color);
 }
 
 .options-container {
-    width: 100%;
+	width: 100%;
 	border: 1px solid var(--border-color);
 	border-width: 1px 0;
-	padding: .5em;
+	padding: 0.5em;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
 }
 
 .options-container button {
-	padding: .5em;
+	padding: 0.5em;
 }
 
 .options-container .add-btn {
@@ -118,32 +108,30 @@ body {
 	color: var(--site-bg-color);
 }
 
-
 .files-container {
-    overflow-y: auto;
-    width: 100%;
-    height: 100%;
+	overflow-y: auto;
+	width: 100%;
+	height: 100%;
 	/* background-color: var(--notepad-bg-color); */
 }
 
 .files-container .file {
-    width: 100%;
-    min-height: 2rem;
-    padding: .5em 1em;
-    /* background-color: var(--notepad-bg-color); */
-    border: 1px solid var(--border-color);
+	width: 100%;
+	min-height: 2rem;
+	padding: 0.5em 1em;
+	/* background-color: var(--notepad-bg-color); */
+	border: 1px solid var(--border-color);
 	border-width: 0px 0 1px 0;
 	position: relative;
 	cursor: pointer;
 }
 
 .files-container .file:hover {
-    background-color: var(--notepad-bg-color);
+	background-color: var(--notepad-bg-color);
 }
 
-
 .files-container .file p {
-    padding: .4em;
+	padding: 0.4em;
 }
 
 .file .delete-btn {
@@ -152,7 +140,7 @@ body {
 	top: 50%;
 	transform: translateY(-50%);
 
-	padding: .5em;
+	padding: 0.5em;
 	font-weight: bold;
 
 	background-color: transparent;
@@ -166,16 +154,12 @@ body {
 	color: var(--site-bg-color);
 }
 
-
-
-
 .notepad-container {
 	width: 100%;
 	background-color: var(--notepad-bg-color);
 	transition: background-color 200ms ease;
 	padding: 1em;
 }
-
 
 .notepad-container h3 {
 	padding-top: 1rem;
@@ -185,26 +169,43 @@ body {
 	border-bottom: 1px solid var(--text-color);
 }
 
-
-
 #save-indicator {
 	width: 100%;
 	height: 0.5rem;
 	background-color: hsl(120, 100%, 25%);
 	border-radius: 2px;
-	margin-bottom: .5em;
+	margin-bottom: 0.5em;
 }
 
 .file-head-container {
 	display: flex;
-}
-
-.file-head-container #filename {
-	flex-grow: 1;
+	padding: 0.5em 1em;
+	margin: 0 0.5em;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--text-color);
 }
 
 .file-head-container .current-delete-btn {
-	padding: .5em 1em;
+	padding: 0.5em 1em;
+}
+
+.file-head-container #filename {
+	/* flex-grow: 1; */
+	width: 90%;
+}
+
+#filename {
+	outline: none;
+	border: none;
+	background-color: transparent;
+	font-size: 1.5rem;
+	color: var(--text-color);
+	padding: 0.2em 0;
+}
+
+#filename:focus,
+#filename:hover {
+	outline: 1px solid var(--text-color);
 }
 
 #notepad {
@@ -245,24 +246,21 @@ body {
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
-
-
 	.app-container .left-panel {
 		display: block;
 	}
-	
+
 	.app-container .notepad-container {
 		display: block;
 	}
-	
+
 	.app-container.left .notepad-container {
 		display: block;
 	}
-	
+
 	.app-container.left .left-panel {
 		display: block;
 	}
-
 
 	.left-panel {
 		width: 30%;
@@ -280,14 +278,11 @@ body {
 	.files-container .file[data-selected="true"] {
 		background-color: var(--notepad-bg-color);
 	}
-	
-
 
 	.files-container .file .delete-btn {
 		opacity: 0;
 		display: none;
 	}
-
 
 	.files-container .file:hover .delete-btn {
 		display: block;
