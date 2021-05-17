@@ -91,6 +91,7 @@ body {
 	overflow: hidden;
 	color: var(--text-color);
 	caret-color: var(--border-color);
+
 	transition: background-color 200ms ease-in-out;
 }
 
@@ -109,13 +110,13 @@ body {
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-	background: var(--orange-4);
+	background-color: var(--orange-4);
 	border-radius: 5px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-	background: var(--orange-2);
+	background-color: var(--orange-2);
   }
 
 
@@ -151,6 +152,8 @@ body {
 .left-panel {
 	width: 100%;
 	background-color: var(--left-panel-bg);
+
+	transition: background-color 200ms ease-in-out;
 }
 
 .search-container {
@@ -197,6 +200,8 @@ body {
 	font-weight: bold;
 	font-size: 1rem;
 	border-radius: 5px;
+	transition: background-color 100ms ease;
+	cursor: pointer;
 }
 
 .options-container .add-btn:hover,
@@ -223,10 +228,10 @@ body {
 	
 	background-color: var(--file-bg);
 
-	/* border: 1px solid var(--border-color); */
-	/* border-width: 0px 0 1px 0; */
 	position: relative;
 	cursor: pointer;
+
+	transition: background-color 100ms ease;
 }
 
 
@@ -247,6 +252,9 @@ body {
 	border: 1px solid var(--red);
 	border-radius: 5px;
 	color: var(--red) ;
+	cursor: pointer;
+
+	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
 }
 
 .file .delete-btn:hover {
@@ -264,6 +272,9 @@ body {
 	padding: .5em .6em;
 	margin: 0 2px;
 	border-radius: 5px;
+	cursor: pointer;
+
+	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
 }
 
 .back-btn:hover,
@@ -280,7 +291,7 @@ body {
 	height: auto;
 	overflow-y: scroll;
 	background-color: var(--notepad-cont-bg);
-	transition: background-color 200ms ease;
+	transition: background-color 200ms ease-in-out;
 	padding: 1em;
 }
 
@@ -311,6 +322,9 @@ body {
 	border: 1px solid var(--red);
 	border-radius: 5px;
 	color: var(--red) ;
+	cursor: pointer;
+
+	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
 }
 
 .file-head-container .current-delete-btn:hover,
@@ -360,7 +374,7 @@ body {
 	outline: none;
 
 	border: none;
-	transition: background-color 200ms ease;
+	transition: background-color 200ms ease,color 200ms ease-in-out;
 }
 
 .center {
