@@ -101,11 +101,11 @@ backBtn.addEventListener("click", () => {
 });
 
 fileNameElement.addEventListener("input", function (e) {
-	note.name = fileNameElement.innerText;
+	note.name = fileNameElement.value;
 
 	const fileElement = document.querySelector(`p[data-note-id="${note.id}"]`);
 
-	fileElement.innerText = fileNameElement.innerText;
+	fileElement.innerText = fileNameElement.value;
 
 	console.log(fileElement);
 
@@ -215,7 +215,7 @@ function createNewFileAndOpen() {
 function openNoteInEditor(n) {
 	console.log("global note", n.id);
 	note = n; // set the global note object
-	fileNameElement.innerText = n.name;
+	fileNameElement.value = n.name;
 	notepad.value = n.content;
 	localStorage.setItem("currentFileId", n.id);
 }
