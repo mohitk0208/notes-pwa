@@ -16,13 +16,6 @@
 	--light-5:hsl(0,0%,70%);
 	--light-6:hsl(0,0%,65%);
 
-	/* --orange-1:hsl(50, 73%, 59%);
-	--orange-2:hsl(50, 75%, 68%);
-	--orange-3:hsl(50, 72%, 76%);
-	--orange-4:hsl(49, 71%, 84%);
-	--orange-5:hsl(48, 72%, 90%);
-	--orange-6:hsl(45, 67%, 98%); */
-
 	--orange-1:hsla(39, 100%, 50%, 0.54);
 	--orange-2:hsla(39, 100%, 50%, 0.44);
 	--orange-3:hsla(39, 100%, 50%, 0.34);
@@ -98,7 +91,7 @@ body {
 	overflow: hidden;
 	color: var(--text-color);
 	caret-color: var(--border-color);
-	transition: background-color 200ms ease;
+	transition: background-color 200ms ease-in-out;
 }
 
 
@@ -261,6 +254,27 @@ body {
 	color: var(--site-bg);
 }
 
+
+
+.back-btn {
+	font-size: 2rem;
+	background-color: transparent;
+	color: var(--text-color);
+	line-height: 1rem;
+	padding: .5em .6em;
+	margin: 0 2px;
+	border-radius: 5px;
+}
+
+.back-btn:hover,
+.back-btn:focus {
+	background-color: var(--text-color);
+	color: var(--site-bg);
+}
+
+
+
+
 .notepad-container {
 	width: 100%;
 	height: auto;
@@ -279,8 +293,9 @@ body {
 }
 
 .file-head-container {
+	width: 100%;
 	display: flex;
-	padding: 0.5em 1em;
+	padding: 0.5em 0;
 	margin: 0 0.5em;
 	justify-content: space-between;
 	border-bottom: 1px solid var(--border-color);
@@ -289,6 +304,7 @@ body {
 
 .file-head-container .current-delete-btn {
 	padding: 0.5em 0.6em;
+	margin: 0 2px;
 	font-weight: bold;
 
 	background-color: transparent;
