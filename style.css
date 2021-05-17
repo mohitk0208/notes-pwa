@@ -134,11 +134,13 @@ body {
     border: 1px solid var(--border-color);
 	border-width: 0px 0 1px 0;
 	position: relative;
+	cursor: pointer;
 }
 
 .files-container .file:hover {
     background-color: var(--notepad-bg-color);
 }
+
 
 .files-container .file p {
     padding: .4em;
@@ -270,6 +272,15 @@ body {
 	.notepad-container {
 		width: 100%;
 	}
+
+	.back-btn {
+		display: none;
+	}
+
+	.files-container .file[data-selected="true"] {
+		background-color: var(--notepad-bg-color);
+	}
+	
 
 
 	.files-container .file .delete-btn {
