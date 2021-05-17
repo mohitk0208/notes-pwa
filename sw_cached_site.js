@@ -6,7 +6,8 @@ const appShellfiles = [
     "/style.css",
     "/script.js",
     "/",
-    "https://fonts.gstatic.com/s/itim/v5/0nknC9ziJOYe8ANAkA.woff2",
+	"https://fonts.gstatic.com/s/itim/v5/0nknC9ziJOYe8ANAkA.woff2",
+	"https://unpkg.com/idb/build/iife/index-min.js",
     "/manifest.webmanifest"
 ]
 
