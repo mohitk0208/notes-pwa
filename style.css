@@ -1,22 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
 
+:root {
+	--dark-1: hsl(0, 0%, 5%);
+	--dark-2: hsl(0, 0%, 10%);
+	--dark-3: hsl(0, 0%, 15%);
+	--dark-4: hsl(0, 0%, 20%);
+	--dark-5: hsl(0, 0%, 25%);
+	--dark-6: hsl(0, 0%, 30%);
+	
+
+	--light-1:hsl(0, 1%, 90%);
+	--light-2:hsl(0,0%,85%);
+	--light-3:hsl(0, 4%, 90%);
+	--light-4:hsl(0,0%,75%);
+	--light-5:hsl(0,0%,70%);
+	--light-6:hsl(0,0%,65%);
+
+	
+	--site-bg-color: var(--light-1);
+	--notepad-bg-color: var(--light-4);
+	--text-color: var(--dark-6);
+	--border-color: var(--dark-6)
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-:root {
-	--site-bg-color: rgb(255, 255, 255);
-	--notepad-bg-color: rgba(0, 0, 0, 0.05);
-	--text-color: black;
-	--border-color: grey;
-}
-
 body.dark {
-	--site-bg-color: rgb(20, 20, 20);
-	--notepad-bg-color: rgba(255, 255, 255, 0.05);
-	--text-color: grey;
+	--site-bg-color: var(--dark-1);
+	--notepad-bg-color: var(--dark-3);
+	--text-color: var(--light-6);
+	--border-color:var(--light-6);
 }
 
 body {
