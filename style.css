@@ -16,16 +16,22 @@
 	--light-5:hsl(0,0%,70%);
 	--light-6:hsl(0,0%,65%);
 
-	--orange-1:hsl(50, 73%, 59%);
+	/* --orange-1:hsl(50, 73%, 59%);
 	--orange-2:hsl(50, 75%, 68%);
 	--orange-3:hsl(50, 72%, 76%);
 	--orange-4:hsl(49, 71%, 84%);
 	--orange-5:hsl(48, 72%, 90%);
-	--orange-6:hsl(45, 67%, 98%);
+	--orange-6:hsl(45, 67%, 98%); */
 
+	--orange-1:hsla(39, 100%, 50%, 0.54);
+	--orange-2:hsla(39, 100%, 50%, 0.44);
+	--orange-3:hsla(39, 100%, 50%, 0.34);
+	--orange-4:hsla(39, 100%, 50%, 0.24);
+	--orange-5:hsla(39, 100%, 50%, 0.14);
+	--orange-6:hsla(39, 100%, 50%, 0.04);
 
 	--green:green;
-	--red:red;
+	--red:rgba(255, 0, 0, 0.822);
 	--orange:orange;
 
 	
@@ -50,11 +56,8 @@
 	--back-btn-bg:var(--green);
 	
 
-
-
-
 	--text-color: var(--dark-1);
-	--border-color: var(--orange-1)
+	--border-color: var(--orange)
 }
 
 * {
@@ -64,11 +67,27 @@
 }
 
 body.dark {
+
 	--site-bg: var(--dark-1);
-	--notepad-bg: var(--dark-3);
-	--text-color: var(--light-6);
-	--border-color:var(--light-6);
+	--left-panel-bg:var(--dark-2);
+
+	--search-cont-input-bg:var(--light-3);
+
+
+	--file-hover-bg:var(--orange-5);
+	--file-selected-bg:var(--orange-5);
+	
+	--notepad-cont-bg:var(--dark-3);
+
+
+	--back-btn-bg:var(--green);
+	
+
+	--text-color: var(--light-5);
+	--border-color: var(--orange-1)
 }
+
+
 
 body {
 	font-family: "Itim", cursive;
@@ -200,12 +219,14 @@ body {
 	height: 75%;
 	background-color: var(--files-cont-bg);
 	overflow-y: scroll;
+	padding-bottom: 1em;
 }
 
 .files-container .file {
 	width: 100%;
 	min-height: 2rem;
 	padding: 0.2em 1em;
+	margin-bottom: 1px;
 	
 	background-color: var(--file-bg);
 
