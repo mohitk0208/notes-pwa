@@ -21,14 +21,17 @@ const backBtn = document.querySelector(".back-btn");
 const currentDeleteBtn = document.querySelector(".current-delete-btn");
 const modeBtn = document.querySelector(".mode-btn")
 
-// if (navigator.serviceWorker) {
-// 	window.addEventListener("load", () => {
-// 		navigator.serviceWorker
-// 			.register("./sw_cached_site.js")
-// 			.then((reg) => console.log("Service Worker: Registered"))
-// 			.catch((err) => console.error(`Service Worker: Error ${err}`));
-// 	});
-// }
+// set the mode according to the system preference
+SetDarkModeAndAddEventListener();
+
+if (navigator.serviceWorker) {
+	window.addEventListener("load", () => {
+		navigator.serviceWorker
+			.register("./sw_cached_site.js")
+			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope }`))
+			.catch((err) => console.error(`Service Worker: Error ${err}`));
+	});
+}
 
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note = null;
@@ -39,8 +42,7 @@ const SAVE_STATUS = {
 	SAVED: "hsl(120, 100%, 25%)",
 };
 
-// set the mode according to the system preference
-SetDarkModeAndAddEventListener();
+
 
 console.log(localStorage.getItem("currentFileId"));
 
@@ -245,18 +247,18 @@ function SetDarkModeAndAddEventListener() {
 		checkAndRemoveClass(body, "dark");
 	}
 	// listen for the mode change
-	window
-		.matchMedia("(prefers-color-scheme: dark)")
-		.addEventListener("change", function (e) {
-			if (e.matches) {
-				console.info("ACTIVATED DARK MODE");
-				body.classList.add("dark");
-			} else {
-				console.info("ACTIVATED LIGHT MODE");
-				// body.classList.remove("dark");
-				checkAndRemoveClass(body,"dark")
-			}
-		});
+	// window
+	// 	.matchMedia("(prefers-color-scheme: dark)")
+	// 	.addEventListener("change", function (e) {
+	// 		if (e.matches) {
+	// 			console.info("ACTIVATED DARK MODE");
+	// 			body.classList.add("dark");
+	// 		} else {
+	// 			console.info("ACTIVATED LIGHT MODE");
+	// 			// body.classList.remove("dark");
+	// 			checkAndRemoveClass(body,"dark")
+	// 		}
+	// 	});
 }
 
 function setIndicatorStatusColor(color) {
