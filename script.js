@@ -19,6 +19,7 @@ const addFileBtn = document.querySelector(".add-btn");
 const filesContainer = document.querySelector(".files-container");
 const backBtn = document.querySelector(".back-btn");
 const currentDeleteBtn = document.querySelector(".current-delete-btn");
+const modeBtn = document.querySelector(".mode-btn")
 
 // if (navigator.serviceWorker) {
 // 	window.addEventListener("load", () => {
@@ -89,6 +90,13 @@ updateFileList();
 // ________________________________________________________________________
 
 // ALL EVENT LISTENERS HERE....
+
+modeBtn.addEventListener("click",() => {
+	body.classList.toggle("dark")
+
+	if(body.classList.contains("dark")) modeBtn.innerText = "Dark"
+	else modeBtn.innerText = "Light"
+})
 
 addFileBtn.addEventListener("click", (e) => {
 	createNewFileAndOpen();
