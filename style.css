@@ -21,7 +21,7 @@
 	--orange-3:hsla(39, 100%, 50%, 0.34);
 	--orange-4:hsla(39, 100%, 50%, 0.24);
 	--orange-5:hsla(39, 100%, 50%, 0.14);
-	--orange-6:hsla(39, 100%, 50%, 0.04);
+	--orange-6:hsla(39, 93%, 83%, 0.199);
 
 	--green:green;
 	--red:rgba(255, 0, 0, 0.822);
@@ -29,7 +29,7 @@
 
 	
 	--site-bg: var(--light-1);
-	--left-panel-bg:var(--orange-6);
+	--left-panel-bg: var(--orange-6) ;
 
 	--search-cont-bg:transparent;
 	--search-cont-input-bg:var(--light-3);
@@ -92,7 +92,7 @@ body {
 	color: var(--text-color);
 	caret-color: var(--border-color);
 
-	transition: background-color 200ms ease-in-out;
+	transition: background-color 600ms ease-in-out;
 }
 
 
@@ -149,12 +149,72 @@ body {
 	display: flex;
 }
 
+
+body .app-container::after {
+	content: '';
+	position: absolute;
+	bottom:-50%;
+	left: -50%;
+	width: 50%;
+	height: 50%;
+	border-radius: 400px;
+	background-color: rgba(0, 0, 0, 1);
+	pointer-events: none;
+
+	transition: width .5s ease-in-out, 
+				height .5s ease-in-out,
+				background-color .5s ease-in-out,
+				border-radius .5s ease-in-out;
+}
+
+body.dark .app-container::after {
+	width: 150%;
+	height: 150%;
+	border-radius: 1px;
+	background-color:rgba(0, 0, 0, 0);
+}
+
 .left-panel {
 	width: 100%;
+	height: 100%;
+	/* background-color: var(--left-panel-bg); */
+	
 	background-color: var(--left-panel-bg);
+	transition: background-color 600ms ease-in-out;
 
-	transition: background-color 200ms ease-in-out;
+	position: relative;
 }
+
+
+body .left-panel::after {
+	content: '';
+	position: absolute;
+	top:-50%;
+	left: -50%;
+	width: 50%;
+	height: 50%;
+	border-radius: 400px;
+	background-color: rgba(0, 0, 0, 1);
+	pointer-events: none;
+
+	transition: width .5s ease-in-out, 
+				height .5s ease-in-out,
+				background-color .5s ease-in-out,
+				border-radius .5s ease-in-out;
+}
+
+body.dark .left-panel::after {
+	width: 150%;
+	height: 150%;
+	border-radius: 1px;
+	background-color:rgba(0, 0, 0, 0);
+}
+
+
+
+
+
+
 
 .search-container {
 	width: 100%;
@@ -291,7 +351,7 @@ body {
 	height: auto;
 	overflow-y: scroll;
 	background-color: var(--notepad-cont-bg);
-	transition: background-color 200ms ease-in-out;
+	transition: background-color 600ms ease-in-out;
 	padding: 1em;
 }
 
