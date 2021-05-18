@@ -117,8 +117,8 @@ notepad.addEventListener("input", () => {
 	note.content = notepad.value;
 
 	// _______________ AUTO GROW TEXTAREA HEIGHT___________
-	notepad.style.height = "5px"
-	notepad.style.height = (notepad.scrollHeight)+"px"
+	notepad.style.height = "5px";
+	notepad.style.height = notepad.scrollHeight + "px";
 	// -------------------------------------------------------
 
 	setIndicatorStatusColor(SAVE_STATUS.SAVING);
@@ -127,7 +127,7 @@ notepad.addEventListener("input", () => {
 
 currentDeleteBtn.addEventListener("click", async () => {
 	await deleteAndUpdateEnvironment(note.id);
-	appContainer.classList.add("left")
+	appContainer.classList.add("left");
 });
 
 // __________________________________________________________________________________
@@ -156,7 +156,7 @@ function createHTMLFile(localNote, selected = false) {
 
 		const updatedNote = await getNote(localNote.id);
 		openNoteInEditor(updatedNote);
-		checkAndRemoveClass(appContainer,"left")
+		checkAndRemoveClass(appContainer, "left");
 
 		updateFileList();
 	});
@@ -233,6 +233,8 @@ function SetDarkModeAndAddEventListener() {
 		//dark mode
 		console.info("DARK MODE ACTIVATED");
 		body.classList.add("dark");
+	} else {
+		checkAndRemoveClass(body, "dark");
 	}
 	// listen for the mode change
 	window
@@ -240,10 +242,12 @@ function SetDarkModeAndAddEventListener() {
 		.addEventListener("change", function (e) {
 			if (e.matches) {
 				console.info("ACTIVATED DARK MODE");
-				return body.classList.add("dark");
+				body.classList.add("dark");
+			} else {
+				console.info("ACTIVATED LIGHT MODE");
+				// body.classList.remove("dark");
+				checkAndRemoveClass(body,"dark")
 			}
-			console.info("ACTIVATED LIGHT MODE");
-			return body.classList.remove("dark");
 		});
 }
 
