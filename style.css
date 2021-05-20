@@ -59,6 +59,10 @@
 	box-sizing: border-box;
 }
 
+.material-icons-round  {
+	font-size: inherit;
+}
+
 body.dark {
 
 	--site-bg: var(--dark-1);
@@ -230,15 +234,17 @@ body.dark .left-panel::after {
 
 .mode-btn {
 	position: absolute;
-	top: 1em;
-	right: 1em;
+	font-size: 1.2rem;
+	top: 1.5em;
+	right: 1.5em;
+	transform: translate(50%,-50%);
 
 	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	background-color: transparent;
 	color: var(--text-color);
-	padding: .5em .6em;
+	padding: .5rem;
 	margin: 0 2px;
 	border-radius: 5px;
 	cursor: pointer;
@@ -324,16 +330,27 @@ body.dark .left-panel::after {
 
 .files-container .file p {
 	padding: 0.4em;
+	font-size: 1.1rem;
+	line-height: 2rem;
+	vertical-align: middle;
+	opacity: .8;
+	 transition: color 200ms ease;
+}
+
+.files-container .file p span {
+	font-size: 1rem;
 }
 
 .file .delete-btn {
 	position: absolute;
-	right: 10%;
+	right: 7%;
 	top: 50%;
 	transform: translateY(-50%);
 
-	padding: 0.5em;
+	padding: .2em;
+
 	font-weight: bold;
+	font-size: 1.1rem;
 
 	background-color: transparent;
 	border: 1px solid var(--red);
@@ -356,12 +373,15 @@ body.dark .left-panel::after {
 	background-color: transparent;
 	color: var(--text-color);
 	line-height: 1rem;
-	padding: .5em .6em;
 	margin: 0 2px;
 	border-radius: 5px;
 	cursor: pointer;
 
 	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
+}
+
+.back-btn span {
+	font-size: inherit;
 }
 
 .back-btn:hover,
@@ -384,7 +404,7 @@ body.dark .left-panel::after {
 
 #save-indicator {
 	width: 100%;
-	height: 0.5rem;
+	height: 0.2rem;
 	background-color: var(--green);
 	border-radius: 2px;
 	margin-bottom: 0.5em;
@@ -395,14 +415,15 @@ body.dark .left-panel::after {
 	display: flex;
 	padding: 0.5em 0;
 	margin: 0 0.5em;
-	justify-content: space-between;
+	justify-content: space-around;
 	border-bottom: 1px solid var(--border-color);
 	background-color: var(--file-head-cont-bg);
 }
 
 .file-head-container .current-delete-btn {
-	padding: 0.5em 0.6em;
+	padding: 0.4rem ;
 	margin: 0 2px;
+	font-size: 1.2rem;
 	font-weight: bold;
 
 	background-color: transparent;

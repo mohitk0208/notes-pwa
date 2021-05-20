@@ -6,8 +6,13 @@ const appShellfiles = [
 	"/Note.js",
 	"/style.css",
 	"/script.js",
+	
+	"https://fonts.googleapis.com/icon?family=Material+Icons+Round",
+	"https://fonts.gstatic.com/s/materialiconsround/v58/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2",
+
 	"https://fonts.gstatic.com/s/itim/v5/0nknC9ziJOYe8ANAkA.woff2",
 	"https://fonts.googleapis.com/css2?family=Itim&display=swap",
+	
 	"https://unpkg.com/idb/build/iife/index-min.js",
 	"/manifest.webmanifest",
 ];

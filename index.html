@@ -3,6 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+		/>
 		<link rel="stylesheet" href="/style.css" />
 		<link rel="manifest" href="manifest.webmanifest" />
 		<script src="https://unpkg.com/idb/build/iife/index-min.js" defer></script>
@@ -14,12 +18,14 @@
 			<!-- left panel -->
 			<div class="left-panel">
 				<div class="search-container">
-					<button class="mode-btn remove-btn-style" >Dark</button>
+					<button class="mode-btn remove-btn-style">
+						<span class="material-icons-round"> dark_mode </span>
+					</button>
 					<input type="search" name="" id="" placeholder="Search" />
 				</div>
 				<div class="options-container">
-					<button class="add-btn remove-btn-style" >
-						+ Add new File
+					<button class="add-btn remove-btn-style">
+						<span class="material-icons-round"> note_add </span> Add new File
 					</button>
 				</div>
 				<div class="files-container">
@@ -37,9 +43,13 @@
 			<div class="notepad-container">
 				<div id="save-indicator"></div>
 				<div class="file-head-container">
-					<button class="back-btn remove-btn-style" >←</button>
+					<button class="back-btn remove-btn-style">
+						<span class="material-icons-round"> arrow_back </span>
+					</button>
 					<input type="text" class="text-center" id="filename" />
-					<button class="current-delete-btn" >DEL</button>
+					<button class="current-delete-btn">
+						<span class="material-icons-round"> delete_forever </span>
+					</button>
 				</div>
 				<textarea
 					class="center"

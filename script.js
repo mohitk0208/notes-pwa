@@ -19,7 +19,7 @@ const addFileBtn = document.querySelector(".add-btn");
 const filesContainer = document.querySelector(".files-container");
 const backBtn = document.querySelector(".back-btn");
 const currentDeleteBtn = document.querySelector(".current-delete-btn");
-const modeBtn = document.querySelector(".mode-btn")
+const modeBtn = document.querySelector(".mode-btn");
 
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
@@ -41,8 +41,6 @@ const SAVE_STATUS = {
 	SAVING: "hsl(39, 100%, 50%)",
 	SAVED: "hsl(120, 100%, 25%)",
 };
-
-
 
 console.log(localStorage.getItem("currentFileId"));
 
@@ -93,12 +91,13 @@ updateFileList();
 
 // ALL EVENT LISTENERS HERE....
 
-modeBtn.addEventListener("click",() => {
-	body.classList.toggle("dark")
+modeBtn.addEventListener("click", () => {
+	body.classList.toggle("dark");
 
-	if(body.classList.contains("dark")) modeBtn.innerText = "Dark"
-	else modeBtn.innerText = "Light"
-})
+	if (body.classList.contains("dark"))
+		modeBtn.innerHTML = '<span class="material-icons-round">dark_mode</span>';
+	else modeBtn.innerHTML = '<span class="material-icons-round">light_mode</span>';
+});
 
 addFileBtn.addEventListener("click", (e) => {
 	createNewFileAndOpen();
@@ -173,12 +172,12 @@ function createHTMLFile(localNote, selected = false) {
 
 	// ________________ p ___________________
 	const p = document.createElement("p");
-	p.innerText = localNote.name;
+	p.innerHTML = `<span class="material-icons-round">description</span> ${localNote.name}`;
 	p.setAttribute("data-note-id", localNote.id);
 
 	// _______________button__________________
 	const button = document.createElement("button");
-	button.innerText = "DEL";
+	button.innerHTML = '<span class="material-icons-round">delete_forever</span>';
 	button.classList.add(...["delete-btn", "remove-btn-style"]);
 	button.setAttribute("data-note-id", localNote.id);
 
