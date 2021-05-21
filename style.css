@@ -241,22 +241,15 @@ body.dark .left-panel::after {
 
 	font-weight: bold;
 	text-transform: uppercase;
-	letter-spacing: 1px;
 	background-color: transparent;
 	color: var(--text-color);
 	padding: .5rem;
-	margin: 0 2px;
-	border-radius: 5px;
 	cursor: pointer;
 
-	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
-
+	transition: color 200ms ease-in-out;
 }
 
-.mode-btn:hover {
-	background-color: var(--text-color);
-	color: var(--site-bg);
-}
+
 
 
 .search-container input {
@@ -350,20 +343,19 @@ body.dark .left-panel::after {
 	padding: .2em;
 
 	font-weight: bold;
-	font-size: 1.1rem;
+	font-size: 1.5rem;
 
 	background-color: transparent;
-	border: 1px solid var(--red);
-	border-radius: 5px;
 	color: var(--red) ;
 	cursor: pointer;
 
-	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
+	transition:color 200ms ease-in-out;
 }
 
 .file .delete-btn:hover {
-	background-color: var(--red);
-	color: var(--site-bg);
+	/* background-color: var(--red);
+	color: var(--site-bg); */
+
 }
 
 
@@ -377,17 +369,15 @@ body.dark .left-panel::after {
 	border-radius: 5px;
 	cursor: pointer;
 
-	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
+	transition:color 200ms ease-in-out;
 }
 
 .back-btn span {
 	font-size: inherit;
 }
 
-.back-btn:hover,
 .back-btn:focus {
-	background-color: var(--text-color);
-	color: var(--site-bg);
+	border: 1px solid var(--text-color);
 }
 
 
@@ -421,24 +411,20 @@ body.dark .left-panel::after {
 }
 
 .file-head-container .current-delete-btn {
-	padding: 0.4rem ;
-	margin: 0 2px;
-	font-size: 1.2rem;
+	padding: .2rem;
+	font-size: 1.5rem;
 	font-weight: bold;
 
 	background-color: transparent;
-	border: 1px solid var(--red);
-	border-radius: 5px;
+	border: none;
 	color: var(--red) ;
 	cursor: pointer;
 
-	transition: background-color 200ms ease-in-out,color 200ms ease-in-out;
+	transition:transform 200ms ease-in-out, color 200ms ease-in-out;
 }
 
-.file-head-container .current-delete-btn:hover,
-.file-head-container .current-delete-btn:focus {
-	background-color: var(--red);
-	color: var(--site-bg);
+.file-head-container .current-delete-btn:hover {
+	transform: scale(1.2);
 }
 
 
