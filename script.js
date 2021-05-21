@@ -12,6 +12,7 @@ import {
 // ALL QUERY SELECTORS
 const body = document.querySelector("body");
 const appContainer = document.querySelector(".app-container");
+
 const indicator = document.getElementById("save-indicator");
 const notepad = document.getElementById("notepad");
 const fileNameElement = document.getElementById("filename");
@@ -20,22 +21,24 @@ const filesContainer = document.querySelector(".files-container");
 const backBtn = document.querySelector(".back-btn");
 const currentDeleteBtn = document.querySelector(".current-delete-btn");
 const modeBtn = document.querySelector(".mode-btn");
+const searchElement = document.getElementById("search");
 
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
 
-if (navigator.serviceWorker) {
-	window.addEventListener("load", () => {
-		navigator.serviceWorker
-			.register("./sw_cached_site.js")
-			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope }`))
-			.catch((err) => console.error(`Service Worker: Error ${err}`));
-	});
-}
+// if (navigator.serviceWorker) {
+// 	window.addEventListener("load", () => {
+// 		navigator.serviceWorker
+// 			.register("./sw_cached_site.js")
+// 			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope }`))
+// 			.catch((err) => console.error(`Service Worker: Error ${err}`));
+// 	});
+// }
 
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note = null;
 let timeOut = null;
+let searchTimeOut = null
 
 const SAVE_STATUS = {
 	SAVING: "hsl(39, 100%, 50%)",
@@ -60,12 +63,24 @@ if (currentFileId) {
 
 // initialize the file list in left panel
 function updateFileList() {
-	getAllNotes().then((notes) => {
-		const content = notes.reverse().map((n) => {
-			if (n.id === note.id) return createHTMLFile(n, true);
 
-			return createHTMLFile(n);
-		});
+	searchTimeOut = null
+
+	getAllNotes().then((allNotes) => {
+		const query = searchElement.value;
+
+		const content = allNotes
+			.filter((n) => {
+				if (query === "") return true;
+
+				return new RegExp(query).test(n.name);
+			})
+			.reverse()
+			.map((n) => {
+				if (n.id === note.id) return createHTMLFile(n, true);
+
+				return createHTMLFile(n);
+			});
 
 		filesContainer.innerHTML = "";
 
@@ -90,13 +105,23 @@ updateFileList();
 // ________________________________________________________________________
 
 // ALL EVENT LISTENERS HERE....
+searchElement.addEventListener("input",(e) => {
+
+	if(searchTimeOut ) clearTimeout(searchTimeOut)
+
+	searchTimeOut = setTimeout(() => {
+		updateFileList()
+	},50)
+
+})
 
 modeBtn.addEventListener("click", () => {
 	body.classList.toggle("dark");
 
 	if (body.classList.contains("dark"))
 		modeBtn.innerHTML = '<span class="material-icons-round">dark_mode</span>';
-	else modeBtn.innerHTML = '<span class="material-icons-round">light_mode</span>';
+	else
+		modeBtn.innerHTML = '<span class="material-icons-round">light_mode</span>';
 });
 
 addFileBtn.addEventListener("click", (e) => {
