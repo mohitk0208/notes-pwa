@@ -21,12 +21,12 @@
 	"theme_color": "#FFA500",
 	"screenshots": [
 		{
-		  "src": "./images/screenshot1.jpg",
+		  "src": "./images/Screenshot1.jpg",
 		  "type": "image/png",
 		  "sizes": "1920x1080"
 		},
 		{
-		  "src": "./images/screenshot2.jpg",
+		  "src": "./images/Screenshot2.jpg",
 		  "type": "image/jpg",
 		  "sizes": "1920x1080"
 		}
