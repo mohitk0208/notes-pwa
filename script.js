@@ -162,7 +162,6 @@ fileNameElement.addEventListener("input", function (e) {
 notepad.addEventListener("keydown", (e) => {
 	console.log(e.key);
 
-
 	if (e.key == "Tab") {
 		e.preventDefault();
 		var start = notepad.selectionStart;
@@ -170,7 +169,7 @@ notepad.addEventListener("keydown", (e) => {
 
 		// set textarea value to: text before caret + tab + text after caret
 		notepad.value =
-		notepad.value.substring(0, start) + "\t" + notepad.value.substring(end);
+			notepad.value.substring(0, start) + "\t" + notepad.value.substring(end);
 
 		// put caret at right position again
 		notepad.selectionStart = notepad.selectionEnd = start + 1;
@@ -178,7 +177,6 @@ notepad.addEventListener("keydown", (e) => {
 });
 
 notepad.addEventListener("input", (e) => {
-
 	note.content = notepad.value;
 
 	// _______________ AUTO GROW TEXTAREA HEIGHT___________
@@ -275,8 +273,29 @@ function checkAndRemoveClass(element, className) {
 
 function createNewFileAndOpen() {
 	setIndicatorStatusColor(SAVE_STATUS.SAVING);
-	openNoteInEditor(new Note("untitled", ""));
-	save();
+	getAllNotes().then((allNotes) => {
+		const sortedFiles = allNotes
+			.filter((n) => {
+				return /untitled-\d+/.test(n.name);
+			})
+			.sort((a, b) => {
+				const aNum = a.name.match(/untitled-(\d+)/)[1];
+				const bNum = b.name.match(/untitled-(\d+)/)[1];
+
+				return bNum - aNum;
+			});
+
+		const lastFileNumber =
+			sortedFiles.length !== 0
+				? sortedFiles[0].name.match(/untitled-(\d+)/)[1]
+				: 0;
+
+		console.log(lastFileNumber);
+
+		openNoteInEditor(new Note(`untitled-${Number(lastFileNumber) + 1}`, ""));
+		save();
+		updateFileList()
+	});
 }
 /**
  *
