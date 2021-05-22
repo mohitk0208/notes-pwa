@@ -22,6 +22,7 @@ const backBtn = document.querySelector(".back-btn");
 const currentDeleteBtn = document.querySelector(".current-delete-btn");
 const modeBtn = document.querySelector(".mode-btn");
 const searchElement = document.getElementById("search");
+const monospaceMode = document.getElementById("font-mode");
 
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
@@ -38,7 +39,7 @@ SetDarkModeAndAddEventListener();
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note = null;
 let timeOut = null;
-let searchTimeOut = null
+let searchTimeOut = null;
 
 const SAVE_STATUS = {
 	SAVING: "hsl(39, 100%, 50%)",
@@ -63,8 +64,7 @@ if (currentFileId) {
 
 // initialize the file list in left panel
 function updateFileList() {
-
-	searchTimeOut = null
+	searchTimeOut = null;
 
 	getAllNotes().then((allNotes) => {
 		const query = searchElement.value;
@@ -97,6 +97,12 @@ function updateFileList() {
 
 updateFileList();
 
+if (monospaceMode.checked) {
+	notepad.style.fontFamily = "'Fira Code', monospace";
+} else {
+	notepad.style.fontFamily = "'Fira Sans', sans-serif";
+}
+
 (async () => {
 	let x = await getFileByIndex((await getTotalFiles()) - 1);
 	console.log(x);
@@ -105,15 +111,21 @@ updateFileList();
 // ________________________________________________________________________
 
 // ALL EVENT LISTENERS HERE....
-searchElement.addEventListener("input",(e) => {
+monospaceMode.addEventListener("change", () => {
+	if (monospaceMode.checked)
+		notepad.style.fontFamily = "'Fira Code', monospace";
+	else {
+		notepad.style.fontFamily = "'Fira Sans', sans-serif";
+	}
+});
 
-	if(searchTimeOut ) clearTimeout(searchTimeOut)
+searchElement.addEventListener("input", (e) => {
+	if (searchTimeOut) clearTimeout(searchTimeOut);
 
 	searchTimeOut = setTimeout(() => {
-		updateFileList()
-	},50)
-
-})
+		updateFileList();
+	}, 50);
+});
 
 modeBtn.addEventListener("click", () => {
 	body.classList.toggle("dark");

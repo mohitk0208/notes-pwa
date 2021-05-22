@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Itim&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Fira+Sans:wght@400;700&display=swap');
 
 :root {
 	--dark-1: hsl(0, 0%, 5%);
@@ -87,7 +88,7 @@ body.dark {
 
 
 body {
-	font-family: "Itim", cursive;
+	font-family: 'Fira Sans', sans-serif;
 	font-size: larger;
 
 	background-color: var(--site-bg);
@@ -521,6 +522,7 @@ body.dark .left-panel::after {
 }
 
 #notepad {
+	font-family:'Fira Sans', sans-serif;;
 	width: 98%;
 	min-height: 100%;
 	overflow: hidden;
