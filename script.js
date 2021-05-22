@@ -27,14 +27,14 @@ const monospaceMode = document.getElementById("font-mode");
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
 
-// if (navigator.serviceWorker) {
-// 	window.addEventListener("load", () => {
-// 		navigator.serviceWorker
-// 			.register("./sw_cached_site.js")
-// 			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope }`))
-// 			.catch((err) => console.error(`Service Worker: Error ${err}`));
-// 	});
-// }
+if (navigator.serviceWorker) {
+	window.addEventListener("load", () => {
+		navigator.serviceWorker
+			.register("./sw_cached_site.js")
+			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope }`))
+			.catch((err) => console.error(`Service Worker: Error ${err}`));
+	});
+}
 
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note = null;
