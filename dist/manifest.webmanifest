@@ -2,9 +2,33 @@
 	"short_name": "Notes",
 	"name": "Notes-PWA",
 	"description": "A Simple and light weight note making PWA",
-	"start_url": "/?source=pwa",
-	"background_color": "#b8b8b8",
+	"icons": [
+		{
+		  "src": "./images/icon-192.png",
+		  "type": "image/png",
+		  "sizes": "192x192"
+		},
+		{
+		  "src": "./images/icon-512.png",
+		  "type": "image/png",
+		  "sizes": "512x512"
+		}
+	  ],
+	"start_url": "./?source=pwa",
+	"background_color": "#FFE680",
 	"display": "standalone",
-	"scope": "/",
-	"theme_color": "#872bac"
+	"scope": "./",
+	"theme_color": "#FFA500",
+	"screenshots": [
+		{
+		  "src": "./images/screenshot1.jpg",
+		  "type": "image/png",
+		  "sizes": "1920x1080"
+		},
+		{
+		  "src": "./images/screenshot2.jpg",
+		  "type": "image/jpg",
+		  "sizes": "1920x1080"
+		}
+	  ]
 }

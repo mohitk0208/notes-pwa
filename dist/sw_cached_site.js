@@ -2,10 +2,15 @@ const cachesName = "notesCaches_v2";
 const appShellfiles = [
 	"./",
 	"./index.html",
+	"./favicon.ico",
 	"./indexedDb.js",
 	"./Note.js",
 	"./style.css",
 	"./script.js",
+	"./images/icon-192.png",
+	"./images/icon-512.png",
+	"./images/Screenshot1.jpg",
+	"./images/Screenshot2.jpg",
 	
 	"https://fonts.googleapis.com/icon?family=Material+Icons+Round",
 	"https://fonts.gstatic.com/s/materialiconsround/v58/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2",
