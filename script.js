@@ -159,7 +159,26 @@ fileNameElement.addEventListener("input", function (e) {
 	clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 });
 
-notepad.addEventListener("input", () => {
+notepad.addEventListener("keydown", (e) => {
+	console.log(e.key);
+
+
+	if (e.key == "Tab") {
+		e.preventDefault();
+		var start = notepad.selectionStart;
+		var end = notepad.selectionEnd;
+
+		// set textarea value to: text before caret + tab + text after caret
+		notepad.value =
+		notepad.value.substring(0, start) + "\t" + notepad.value.substring(end);
+
+		// put caret at right position again
+		notepad.selectionStart = notepad.selectionEnd = start + 1;
+	}
+});
+
+notepad.addEventListener("input", (e) => {
+
 	note.content = notepad.value;
 
 	// _______________ AUTO GROW TEXTAREA HEIGHT___________
