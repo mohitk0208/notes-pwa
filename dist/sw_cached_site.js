@@ -1,20 +1,26 @@
 const cachesName = "notesCaches_v2";
 const appShellfiles = [
-	"/",
-	"/index.html",
-	"/indexedDb.js",
-	"/Note.js",
-	"/style.css",
-	"/script.js",
+	"./",
+	"./index.html",
+	"./favicon.ico",
+	"./indexedDb.js",
+	"./Note.js",
+	"./style.css",
+	"./script.js",
+	"./images/icon-192.png",
+	"./images/icon-512.png",
+	"./images/Screenshot1.jpg",
+	"./images/Screenshot2.jpg",
 	
 	"https://fonts.googleapis.com/icon?family=Material+Icons+Round",
 	"https://fonts.gstatic.com/s/materialiconsround/v58/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmP.woff2",
 
-	"https://fonts.gstatic.com/s/itim/v5/0nknC9ziJOYe8ANAkA.woff2",
-	"https://fonts.googleapis.com/css2?family=Itim&display=swap",
+	"https://fonts.gstatic.com/s/firacode/v10/uU9NCBsR6Z2vfE9aq3bh3dSD.woff2",
+	"https://fonts.gstatic.com/s/firasans/v11/va9E4kDNxMZdWfMOD5Vvl4jL.woff2",
+	"https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Fira+Sans:wght@400;700&display=swap",
 	
 	"https://unpkg.com/idb/build/iife/index-min.js",
-	"/manifest.webmanifest",
+	"./manifest.webmanifest",
 ];
 
 self.addEventListener("install", (e) => {
