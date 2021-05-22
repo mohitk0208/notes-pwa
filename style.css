@@ -61,7 +61,7 @@
 }
 
 .material-icons-round  {
-	font-size: inherit;
+	font-size: .9em;
 }
 
 body.dark {
@@ -223,7 +223,7 @@ body.dark .left-panel::after {
 
 .search-container {
 	width: 100%;
-	height: 10%;
+	height: 11%;
 	background-color: var(--search-cont-bg);
 	padding: 1em 0.5em;
 	display: flex;
@@ -268,12 +268,12 @@ body.dark .left-panel::after {
 
 .options-container {
 	width: 100%;
-	height: 10%;
+	height: 7%;
 
 	background-color: var(--options-cont-bg);
 
 	border-width: 1px 0;
-	padding: 1em;
+	padding: .5em 1em;
 
 }
 
@@ -289,7 +289,15 @@ body.dark .left-panel::after {
 	border-radius: 5px;
 	transition: background-color 100ms ease;
 	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
+
+/* .options-container .add-btn span {
+	display: inline-block
+} */
 
 .options-container .add-btn:hover,
 .options-container .add-btn:focus
@@ -326,14 +334,18 @@ body.dark .left-panel::after {
 	padding: 0.4em;
 	font-size: 1.1rem;
 	line-height: 2rem;
-	vertical-align: top;
+	vertical-align: middle;
 	opacity: .8;
-	 transition: color 200ms ease;
+	transition: color 200ms ease;
+
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
-.files-container .file p span {
+/* .files-container .file p span {
 	font-size: 1rem;
-}
+} */
 
 .file .delete-btn {
 	position: absolute;
