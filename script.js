@@ -226,7 +226,7 @@ function createHTMLFile(localNote, selected = false) {
 
 	// ________________ p ___________________
 	const p = document.createElement("p");
-	p.innerHTML = `<span class="material-icons-round">description</span> ${localNote.name}`;
+	p.innerHTML = `<span class="material-icons-round">description</span><span>${localNote.name}</span>`;
 	p.setAttribute("data-note-id", localNote.id);
 
 	// _______________button__________________
