@@ -151,7 +151,7 @@ fileNameElement.addEventListener("input", function (e) {
 
 	const fileElement = document.querySelector(`p[data-note-id="${note.id}"]`);
 
-	fileElement.innerText = fileNameElement.value;
+	fileElement.innerHTML = `<span class="material-icons-round">description</span> ${fileNameElement.value}`;
 
 	console.log(fileElement);
 
