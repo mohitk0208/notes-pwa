@@ -67,13 +67,13 @@ function updateFileList() {
 	searchTimeOut = null;
 
 	getAllNotes().then((allNotes) => {
-		const query = searchElement.value;
+		const query = searchElement.value.toLowerCase();
 
 		const content = allNotes
 			.filter((n) => {
 				if (query === "") return true;
 
-				return new RegExp(query).test(n.name);
+				return new RegExp(query).test(n.name.toLowerCase());
 			})
 			.reverse()
 			.map((n) => {
