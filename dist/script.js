@@ -180,8 +180,8 @@ notepad.addEventListener("input", (e) => {
 	note.content = notepad.value;
 
 	// _______________ AUTO GROW TEXTAREA HEIGHT___________
-	notepad.style.height = "5px";
-	notepad.style.height = notepad.scrollHeight + "px";
+	// notepad.style.height = "5px";
+	// notepad.style.height = notepad.scrollHeight + "px";
 	// -------------------------------------------------------
 
 	setIndicatorStatusColor(SAVE_STATUS.SAVING);
