@@ -23,6 +23,9 @@ const currentDeleteBtn = document.querySelector(".current-delete-btn");
 const modeBtn = document.querySelector(".mode-btn");
 const searchElement = document.getElementById("search");
 const monospaceMode = document.getElementById("font-mode");
+const importBtn = document.querySelector(".import-btn");
+const exportBtn = document.querySelector(".export-btn");
+
 
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
@@ -31,7 +34,7 @@ if (navigator.serviceWorker) {
 	window.addEventListener("load", () => {
 		navigator.serviceWorker
 			.register("./sw_cached_site.js")
-			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope }`))
+			.then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope}`))
 			.catch((err) => console.error(`Service Worker: Error ${err}`));
 	});
 }
@@ -193,6 +196,11 @@ currentDeleteBtn.addEventListener("click", async () => {
 	appContainer.classList.add("left");
 });
 
+exportBtn.addEventListener("click", () => {
+	save()
+	exportData()
+})
+
 // __________________________________________________________________________________
 
 function save() {
@@ -345,4 +353,18 @@ function clearTimeoutIfExistAndCallSaveFunctionWithTimeout() {
 	timeOut = setTimeout(() => {
 		save();
 	}, 1000);
+}
+
+function exportData() {
+	getAllNotes().then(allNotes => {
+		const data = JSON.stringify(allNotes);
+		const exportName = "notes"
+		var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(data);
+		var downloadAnchorNode = document.createElement('a');
+		downloadAnchorNode.setAttribute("href", dataStr);
+		downloadAnchorNode.setAttribute("download", exportName + ".json");
+		document.body.appendChild(downloadAnchorNode); // required for firefox
+		downloadAnchorNode.click();
+		downloadAnchorNode.remove();
+	})
 }
