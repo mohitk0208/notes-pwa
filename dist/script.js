@@ -25,6 +25,7 @@ const searchElement = document.getElementById("search");
 const monospaceMode = document.getElementById("font-mode");
 const importBtn = document.querySelector(".import-btn");
 const exportBtn = document.querySelector(".export-btn");
+const importFile = document.getElementById("import-file");
 
 
 // set the mode according to the system preference
@@ -201,6 +202,43 @@ exportBtn.addEventListener("click", () => {
 	exportData()
 })
 
+importBtn.addEventListener("click", () => {
+
+	if (typeof window.FileReader !== 'function') {
+		alert("The file API isn't supported on this browser yet.");
+		return;
+	}
+
+	importFile.click()
+})
+
+importFile.addEventListener("input", (e) => {
+	var file, fr;
+
+	if (!importFile) {
+		alert("Um, couldn't find the fileinput element.");
+	}
+	else if (!importFile.files) {
+		alert("This browser doesn't seem to support the `files` property of file inputs.");
+	}
+	else if (!importFile.files[0]) {
+		alert("Please select a file before clicking 'Load'");
+	}
+	else {
+		file = importFile.files[0];
+		fr = new FileReader();
+		fr.onload = receivedText;
+		fr.readAsText(file);
+	}
+
+	function receivedText(e) {
+		let lines = e.target.result;
+		var newArr = JSON.parse(lines);
+
+		importData(newArr)
+	}
+})
+
 // __________________________________________________________________________________
 
 function save() {
@@ -367,4 +405,23 @@ function exportData() {
 		downloadAnchorNode.click();
 		downloadAnchorNode.remove();
 	})
+}
+
+
+function importData(notes) {
+
+	console.log(notes);
+
+	// notes.forEach(note => {
+	// 	const n = new Note(note.name, note.content);
+	// 	addOrUpdateNote(n);
+	// })
+
+	Promise.all(notes.map(note => {
+		const n = new Note(note.name, note.content);
+		return addOrUpdateNote(n);
+	})).then(() => {
+		updateFileList()
+	})
+
 }
