@@ -408,20 +408,15 @@ function exportData() {
 }
 
 
-function importData(notes) {
+async function importData(notes) {
 
 	console.log(notes);
 
-	// notes.forEach(note => {
-	// 	const n = new Note(note.name, note.content);
-	// 	addOrUpdateNote(n);
-	// })
+	for (let i = 0; i < notes.length; i++) {
+		const n = new Note(notes[i].name, notes[i].content);
+		await addOrUpdateNote(n);
+	}
 
-	Promise.all(notes.map(note => {
-		const n = new Note(note.name, note.content);
-		return addOrUpdateNote(n);
-	})).then(() => {
-		updateFileList()
-	})
+	updateFileList()
 
 }
