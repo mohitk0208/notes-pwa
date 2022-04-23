@@ -131,7 +131,8 @@ body {
 }
 
 .app-container.left .left-panel {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .app-container {
@@ -179,6 +180,8 @@ body.dark .app-container::after {
 .left-panel {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
   /* background-color: var(--left-panel-bg); */
 
   background-color: var(--left-panel-bg);
@@ -346,7 +349,7 @@ body.dark .left-panel::after {
 .files-container {
   overflow-y: auto;
   width: 100%;
-  height: 75%;
+  flex: 1;
   background-color: var(--files-cont-bg);
   overflow-y: scroll;
   padding-bottom: 1em;
@@ -421,7 +424,6 @@ body.dark .left-panel::after {
 
 .footer {
   width: 100%;
-  height: 5%;
   padding: 0.7em 1em;
   -webkit-box-shadow: -1px -1px 20px rgba(100, 100, 100, 0.1);
   box-shadow: -1px -1px 20px rgba(100, 100, 100, 0.1);
@@ -673,7 +675,8 @@ input:checked + .slider:before {
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .app-container .left-panel {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .app-container .notepad-container {
@@ -685,7 +688,8 @@ input:checked + .slider:before {
   }
 
   .app-container.left .left-panel {
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
 
   .left-panel {
