@@ -1,4 +1,4 @@
-import idb from "idb"
+import * as idb from "idb"
 import Note from "./Note";
 
 export async function addOrUpdateNote(note: Note) {
