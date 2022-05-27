@@ -1,0 +1,19 @@
+{
+  "name": "notes-pwa",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^4.5.4",
+    "vite": "^2.9.5",
+    "vite-plugin-pwa": "^0.12.0",
+    "workbox-build": "^6.5.3"
+  },
+  "dependencies": {
+    "idb": "^7.0.1"
+  }
+}
