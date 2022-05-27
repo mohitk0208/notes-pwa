@@ -51,7 +51,7 @@ if (monospaceMode.checked) {
 }
 
 (async () => {
-  let x = await getFileByIndex((await getTotalFiles()) - 1);
+  await getFileByIndex((await getTotalFiles()) - 1);
 })();
 
 // ________________________________________________________________________
