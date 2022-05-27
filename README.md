@@ -16,6 +16,8 @@
   <p align="center">
     A lightweight pwa to take quick notes.
     <br />
+    (PROJECT IN MOST BASIC FORM)
+    <br />
     <br />
     <a href="https://notes-ysau.pages.dev/">View Demo</a>
     ·
