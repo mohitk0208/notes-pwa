@@ -1,0 +1,15 @@
+export const body = document.querySelector<HTMLBodyElement>("body")!;
+export const appContainer = document.querySelector<HTMLDivElement>(".app-container")!;
+export const indicator = document.getElementById("save-indicator") as HTMLDivElement;
+export const notepad = document.getElementById("notepad") as HTMLTextAreaElement;
+export const fileNameElement = document.getElementById("filename") as HTMLInputElement;
+export const addFileBtn = document.querySelector(".add-btn") as HTMLButtonElement;
+export const filesContainer = document.querySelector(".files-container") as HTMLDivElement;
+export const backBtn = document.querySelector(".back-btn") as HTMLButtonElement;
+export const currentDeleteBtn = document.querySelector(".current-delete-btn") as HTMLButtonElement;
+export const modeBtn = document.querySelector(".mode-btn") as HTMLButtonElement;
+export const searchElement = document.getElementById("search") as HTMLInputElement;
+export const monospaceMode = document.getElementById("font-mode") as HTMLInputElement;
+export const importBtn = document.querySelector(".import-btn") as HTMLButtonElement;
+export const exportBtn = document.querySelector(".export-btn") as HTMLButtonElement;
+export const importFile = document.getElementById("import-file") as HTMLInputElement;

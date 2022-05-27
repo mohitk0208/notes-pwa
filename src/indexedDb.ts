@@ -45,7 +45,7 @@ export async function getAllNotes() {
   let tx = db.transaction("notes");
   let store = tx.objectStore("notes");
 
-  let notes = await store.getAll();
+  let notes = await store.getAll() as Note[];
 
   await tx.done;
   db.close();
