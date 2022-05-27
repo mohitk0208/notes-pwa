@@ -1,6 +1,12 @@
 import "./style.css"
 import Note from "./Note.js";
 import { getNote, getAllNotes, getFileByIndex, getTotalFiles, deleteNote, addOrUpdateNote } from "./indexedDb"
+import { registerSW } from 'virtual:pwa-register'
+
+registerSW({
+  onNeedRefresh() { },
+  onOfflineReady() { },
+})
 
 // ALL QUERY SELECTORS
 const body = document.querySelector<HTMLBodyElement>("body")!;
@@ -24,19 +30,19 @@ const importFile = document.getElementById("import-file") as HTMLInputElement;
 // set the mode according to the system preference
 SetDarkModeAndAddEventListener();
 
-if (navigator.serviceWorker) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw_cached_site.js")
-      .then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope}`))
-      .catch((err) => console.error(`Service Worker: Error ${err}`));
-  });
-}
+// if (navigator.serviceWorker) {
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker
+//       .register("./sw_cached_site.ts")
+//       .then((reg) => console.log(`Service Worker: Registered,  Scope is ${reg.scope}`))
+//       .catch((err) => console.error(`Service Worker: Error ${err}`));
+//   });
+// }
 
 // let note = new Note(fileNameElement.innerText, notepad.value);
 let note: Note | null = null;
-let timeOut: number | null = null;
-let searchTimeOut: number | null = null;
+let timeOut: NodeJS.Timeout | null = null;
+let searchTimeOut: NodeJS.Timeout | null = null;
 
 const SAVE_STATUS = {
   SAVING: "hsl(39, 100%, 50%)",
@@ -116,7 +122,7 @@ monospaceMode.addEventListener("change", () => {
   }
 });
 
-searchElement.addEventListener("input", (e) => {
+searchElement.addEventListener("input", (_e) => {
   if (searchTimeOut) clearTimeout(searchTimeOut);
 
   searchTimeOut = setTimeout(() => {
@@ -133,7 +139,7 @@ modeBtn.addEventListener("click", () => {
     modeBtn.innerHTML = '<span class="material-icons-round">light_mode</span>';
 });
 
-addFileBtn.addEventListener("click", (e) => {
+addFileBtn.addEventListener("click", (_e) => {
   createNewFileAndOpen();
   updateFileList();
 });
@@ -143,7 +149,7 @@ backBtn.addEventListener("click", () => {
   appContainer.classList.add("left");
 });
 
-fileNameElement.addEventListener("input", function (e) {
+fileNameElement.addEventListener("input", function (_e) {
   if (note) {
     note.name = fileNameElement.value;
   }
@@ -175,7 +181,7 @@ notepad.addEventListener("keydown", (e) => {
   }
 });
 
-notepad.addEventListener("input", (e) => {
+notepad.addEventListener("input", (_e) => {
   if (note) {
     note.content = notepad.value;
   }
@@ -211,7 +217,7 @@ importBtn.addEventListener("click", () => {
   importFile.click()
 })
 
-importFile.addEventListener("input", (e) => {
+importFile.addEventListener("input", (_e) => {
   var file, fr;
 
   if (!importFile) {
