@@ -27,15 +27,10 @@ globalThis.note = null;
 globalThis.timeOut = null;
 globalThis.searchTimeOut = null;
 
-
-console.log(localStorage.getItem("currentFileId"));
-
 const currentFileId = localStorage.getItem("currentFileId");
 
 if (currentFileId) {
   getNote(currentFileId).then((n) => {
-    console.log("this", n);
-
     if (n) return openNoteInEditor(n);
 
     createNewFileAndOpen();
@@ -57,7 +52,6 @@ if (monospaceMode.checked) {
 
 (async () => {
   let x = await getFileByIndex((await getTotalFiles()) - 1);
-  console.log(x);
 })();
 
 // ________________________________________________________________________

@@ -32,11 +32,6 @@ export function updateFileList() {
     content.forEach((c) => {
       filesContainer.appendChild(c);
     });
-
-    console.log(content);
-
-    // filesContainer.innerHTML = "";
-    // filesContainer.insertAdjacentHTML("afterbegin", content);
   });
 }
 
@@ -60,7 +55,6 @@ export function createHTMLFile(localNote: Note, selected = false) {
   div.setAttribute("data-selected", String(selected));
 
   div.addEventListener("click", async () => {
-    console.log("clicked");
     save();
 
     const updatedNote = await getNote(localNote.id);
@@ -98,9 +92,6 @@ export async function deleteAndUpdateEnvironment(id: string) {
   await deleteNote(id);
 
   const count = await getTotalFiles();
-  console.log(count);
-  console.log("local note", id);
-  console.log("note", note?.id);
 
   if (count === 0) createNewFileAndOpen();
   else if (id === note?.id) {
@@ -131,8 +122,6 @@ export function createNewFileAndOpen() {
 
     const lastFileNumber = Math.max(...filteredFilesNumbers);
 
-    console.log(lastFileNumber);
-
     openNoteInEditor(new Note(`untitled-${Number(lastFileNumber) + 1}`, ""));
     save();
     updateFileList()
@@ -141,7 +130,6 @@ export function createNewFileAndOpen() {
 
 
 export function openNoteInEditor(n: Note) {
-  console.log("global note", n.id);
   note = n; // set the global note object
   fileNameElement.value = n.name;
   notepad.value = n.content;
@@ -194,8 +182,6 @@ export function exportData() {
 
 
 export async function importData(notes: Note[]) {
-
-  console.log(notes);
 
   for (let i = 0; i < notes.length; i++) {
     const n = new Note(notes[i].name, notes[i].content);

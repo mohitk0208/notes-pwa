@@ -49,14 +49,11 @@ export function attachEventListeners() {
 
     fileElement.innerHTML = `<span class="material-icons-round">description</span> ${fileNameElement.value}`;
 
-    console.log(fileElement);
-
     setIndicatorStatusColor("SAVING");
     clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
   });
 
   notepad.addEventListener("keydown", (e) => {
-    console.log(e.key);
 
     if (e.key == "Tab") {
       e.preventDefault();
