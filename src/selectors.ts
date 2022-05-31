@@ -13,3 +13,7 @@ export const monospaceMode = document.getElementById("font-mode") as HTMLInputEl
 export const importBtn = document.querySelector(".import-btn") as HTMLButtonElement;
 export const exportBtn = document.querySelector(".export-btn") as HTMLButtonElement;
 export const importFile = document.getElementById("import-file") as HTMLInputElement;
+export const helpModalContainer = document.querySelector(".help-modal-container") as HTMLDivElement;
+export const helpModal = document.querySelector(".help-modal") as HTMLDivElement;
+export const helpModalOverlay = document.querySelector(".help-modal-overlay") as HTMLDivElement;
+export const helpBtn = document.querySelector(".help-btn") as HTMLButtonElement;

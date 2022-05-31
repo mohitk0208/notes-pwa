@@ -1,5 +1,5 @@
 
-import { body, appContainer, notepad, fileNameElement, modeBtn, monospaceMode, importFile } from "./selectors"
+import { body, appContainer, notepad, fileNameElement, modeBtn, monospaceMode, importFile, helpModalContainer } from "./selectors"
 
 import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, deleteAndUpdateEnvironment, exportData, importData, save, setIndicatorStatusColor, updateFileList } from "./utilFunctions"
 
@@ -128,4 +128,15 @@ export const importFileHandler = () => {
 
     importData(newArr)
   }
+}
+
+
+export const openHelpModal = () => {
+  if (helpModalContainer.classList.contains("show")) return
+
+  helpModalContainer.classList.add("show");
+}
+
+export const closeHelpModal = () => {
+  helpModalContainer.classList.remove("show");
 }
