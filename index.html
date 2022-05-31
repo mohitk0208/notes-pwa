@@ -8,11 +8,7 @@
       crossorigin="anonymous"
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
     />
-    <!-- <link
-        rel="stylesheet"
-        crossorigin="anonymous"
-        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Fira+Sans:wght@400;700&display=swap"
-      /> -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notes | PWA</title>
     <meta
@@ -34,10 +30,15 @@
     <div class="app-container left">
       <!-- left panel -->
       <div class="left-panel">
-        <div class="search-container">
+        <div class="utility-btns-container">
+          <button class="help-btn remove-btn-style">
+            <span class="material-icons-round"> help_outline </span>
+          </button>
           <button class="mode-btn remove-btn-style">
             <span class="material-icons-round"> dark_mode </span>
           </button>
+        </div>
+        <div class="search-container">
           <input
             type="search"
             name=""
@@ -64,15 +65,7 @@
             </button>
           </div>
         </div>
-        <div class="files-container">
-          <!--
-					<div class="file">
-						<p>something 1</p>
-						<button class="delete-btn remove-btn-style">
-							DEL
-						</button>
-					</div> -->
-        </div>
+        <div class="files-container"></div>
         <div class="footer">
           <span class="font-mode">
             <span>monospace</span>
@@ -109,6 +102,12 @@
         ></textarea>
       </div>
     </div>
+
+    <div class="help-modal-container">
+      <div class="help-modal-overlay"></div>
+      <div class="help-modal"></div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
