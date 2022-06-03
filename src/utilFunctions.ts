@@ -1,6 +1,7 @@
 import { addOrUpdateNote, deleteNote, getAllNotes, getFileByIndex, getNote, getTotalFiles } from "./indexedDb";
 import Note from "./Note";
-import { body, appContainer, indicator, notepad, fileNameElement, filesContainer, searchElement } from "./selectors"
+import { body, appContainer, indicator, notepad, fileNameElement, filesContainer, searchElement, helpModalBody } from "./selectors"
+import { shortcuts } from "./shortcuts";
 
 
 export const SAVE_STATUS = {
@@ -195,3 +196,42 @@ export async function importData(notes: Note[]) {
   updateFileList()
 
 }
+
+function createShortcutHTMLElement(keys: string | [], description: string) {
+
+  const shortcut = document.createElement("div");
+  shortcut.classList.add("help-modal--shortcut");
+
+  const keysElement = document.createElement("p");
+  keysElement.classList.add("help-modal--shortcut__keys");
+  keysElement.innerHTML = `
+  <span>
+  ${typeof keys !== "string" ? keys.join(" or ") : keys}
+  </span>
+  `
+
+  const descriptionElement = document.createElement("p");
+  descriptionElement.classList.add("help-modal--shortcut__desc");
+  descriptionElement.innerHTML = description;
+
+  shortcut.appendChild(keysElement);
+  shortcut.appendChild(descriptionElement);
+
+  return shortcut;
+}
+
+
+export function createHelpModal() {
+  const fragment = document.createDocumentFragment()
+
+  Object.keys(shortcuts).forEach(key => {
+    const shortcut = createShortcutHTMLElement(shortcuts[key].keys, shortcuts[key].description);
+    fragment.appendChild(shortcut);
+  })
+
+  helpModalBody.appendChild(fragment);
+
+
+}
+
+

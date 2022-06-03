@@ -733,16 +733,23 @@ input:checked + .slider:before {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.1rem;
+  gap: 0.5rem;
   padding: 1rem 0;
 }
 .help-modal--shortcut {
-  display: flex;
-  gap: 2.1rem;
+  width: 80%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
-.help-modal--shortcut__key {
+
+.help-modal--shortcut__keys {
+  text-align: center;
+}
+
+.help-modal--shortcut__keys span {
   background-color: var(--file-selected-bg);
-  padding: 0.2rem 0.7rem;
+  padding: 0.1rem 0.7rem;
   border-radius: 0.4rem;
 }
 /* .help-modal--shortcut__desc {

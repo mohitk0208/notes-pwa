@@ -4,7 +4,8 @@ import { searchElement, notepad } from "./selectors";
 
 interface shortcut {
   keys: string | []
-  handler: (e: ExtendedKeyboardEvent) => void
+  handler: (e: ExtendedKeyboardEvent) => void,
+  description: string
 }
 
 interface shortcutsType {
@@ -19,7 +20,9 @@ export const shortcuts: shortcutsType = {
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       addFileHandler()
-    }
+    },
+    description: "Create a new file"
+
   },
 
   TOGGLE_THEME: {
@@ -27,7 +30,8 @@ export const shortcuts: shortcutsType = {
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       themeToggleHandler()
-    }
+    },
+    description: "Toggle theme"
   },
 
   FOCUS_FILE_SEARCH: {
@@ -35,7 +39,8 @@ export const shortcuts: shortcutsType = {
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       searchElement.focus()
-    }
+    },
+    description: "Search for a file"
   },
 
   TOGGLE_HELP: {
@@ -43,7 +48,8 @@ export const shortcuts: shortcutsType = {
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       toggleHelpModalHandler()
-    }
+    },
+    description: "Toggle help modal"
   }
 
 } as const;
@@ -64,6 +70,7 @@ export const notepadShortcuts: shortcutsType = {
 
       // put caret at right position again
       notepad.selectionStart = notepad.selectionEnd = start + 1;
-    }
+    },
+    description: "Insert a tab character on tab press"
   }
 } as const;
