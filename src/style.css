@@ -683,7 +683,8 @@ input:checked + .slider:before {
 .help-modal-container .help-modal {
   width: 800px;
   height: 550px;
-  background-color: var(--dark-6);
+  padding: 1rem;
+  background-color: var(--notepad-cont-bg);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -695,6 +696,57 @@ input:checked + .slider:before {
 .help-modal-container.show .help-modal {
   transform: translate(-50%, -50%) scale(1);
 }
+
+.help-modal--header {
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+.help-modal--header__heading {
+  flex: 1;
+  text-align: center;
+  color: var(--text-color);
+}
+.help-modal--close-btn {
+  display: block;
+  font-size: 2.2rem;
+  background-color: transparent;
+  cursor: pointer;
+  transition: color 200ms ease-in-out;
+  color: var(--text-color);
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+}
+
+.help-modal--close-btn span {
+  border-radius: 0.2rem;
+}
+
+.help-modal--close-btn:hover span {
+  background-color: var(--text-color);
+  color: var(--notepad-cont-bg);
+}
+
+.help-modal--body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+  padding: 1rem 0;
+}
+.help-modal--shortcut {
+  display: flex;
+  gap: 2.1rem;
+}
+.help-modal--shortcut__key {
+  background-color: var(--file-selected-bg);
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.4rem;
+}
+/* .help-modal--shortcut__desc {
+} */
 
 .center {
   margin: auto;
