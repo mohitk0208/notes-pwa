@@ -29,9 +29,13 @@ export function updateFileList() {
 
     filesContainer.innerHTML = "";
 
+    const fragment = document.createDocumentFragment()
+
     content.forEach((c) => {
-      filesContainer.appendChild(c);
+      fragment.appendChild(c);
     });
+
+    filesContainer.appendChild(fragment)
   });
 }
 
