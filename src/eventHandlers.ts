@@ -1,4 +1,3 @@
-
 import { body, appContainer, notepad, fileNameElement, modeBtn, monospaceMode, importFile, helpModalContainer } from "./selectors"
 
 import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, deleteAndUpdateEnvironment, exportData, importData, save, setIndicatorStatusColor, updateFileList } from "./utilFunctions"
@@ -53,23 +52,6 @@ export const fileNameInputHandler = () => {
 
   setIndicatorStatusColor("SAVING");
   clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
-}
-
-
-export const notepadKeydownEventHandler = (e: KeyboardEvent) => {
-
-  if (e.key == "Tab") {
-    e.preventDefault();
-    var start = notepad.selectionStart;
-    var end = notepad.selectionEnd;
-
-    // set textarea value to: text before caret + tab + text after caret
-    notepad.value =
-      notepad.value.substring(0, start) + "\t" + notepad.value.substring(end);
-
-    // put caret at right position again
-    notepad.selectionStart = notepad.selectionEnd = start + 1;
-  }
 }
 
 export const notepadInputHandler = () => {
@@ -139,4 +121,8 @@ export const openHelpModal = () => {
 
 export const closeHelpModal = () => {
   helpModalContainer.classList.remove("show");
+}
+
+export const toggleHelpModalHandler = () => {
+  helpModalContainer.classList.toggle("show");
 }

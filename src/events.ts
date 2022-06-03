@@ -1,7 +1,9 @@
 
-import { handleMonospaceModeChange, searchElementInputHandler, themeToggleHandler, addFileHandler, backBtnClickHandler, fileNameInputHandler, notepadKeydownEventHandler, notepadInputHandler, deleteCurrentFileHandler, exportBtnClickHandler, importBtnClickHandler, importFileHandler, openHelpModal, closeHelpModal } from "./eventHandlers";
-import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay } from "./selectors"
-  ;
+import { handleMonospaceModeChange, searchElementInputHandler, themeToggleHandler, addFileHandler, backBtnClickHandler, fileNameInputHandler, notepadInputHandler, deleteCurrentFileHandler, exportBtnClickHandler, importBtnClickHandler, importFileHandler, openHelpModal, closeHelpModal } from "./eventHandlers";
+import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay } from "./selectors";
+import MouseTrap from "mousetrap"
+import { notepadShortcuts, shortcuts } from "./shortcuts";
+
 
 
 export function attachEventListeners() {
@@ -19,8 +21,6 @@ export function attachEventListeners() {
 
   fileNameElement.addEventListener("input", fileNameInputHandler);
 
-  notepad.addEventListener("keydown", notepadKeydownEventHandler);
-
   notepad.addEventListener("input", notepadInputHandler);
 
   currentDeleteBtn.addEventListener("click", deleteCurrentFileHandler);
@@ -34,4 +34,34 @@ export function attachEventListeners() {
   helpBtn.addEventListener("click", openHelpModal)
 
   helpModalOverlay.addEventListener("click", closeHelpModal)
+}
+
+
+export function attachNotepadKeyboardShortcuts() {
+
+  Object.keys(notepadShortcuts).forEach(key => {
+    MouseTrap(notepad).bind(notepadShortcuts[key].keys, notepadShortcuts[key].handler)
+  })
+}
+
+
+
+export function attachKeyBoardShortcuts() {
+
+  Object.keys(shortcuts).forEach(key => {
+    MouseTrap.bind(shortcuts[key].keys, shortcuts[key].handler)
+  })
+
+  Object.keys(shortcuts).forEach(key => {
+    MouseTrap(notepad).bind(shortcuts[key].keys, shortcuts[key].handler)
+  })
+
+  Object.keys(shortcuts).forEach(key => {
+    MouseTrap(searchElement).bind(shortcuts[key].keys, shortcuts[key].handler)
+  })
+
+  Object.keys(shortcuts).forEach(key => {
+    MouseTrap(fileNameElement).bind(shortcuts[key].keys, shortcuts[key].handler)
+  })
+
 }

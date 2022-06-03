@@ -2,7 +2,7 @@ import "./style.css"
 import Note from "./Note.js";
 import { getNote, getFileByIndex, getTotalFiles } from "./indexedDb"
 import { registerSW } from 'virtual:pwa-register'
-import { attachEventListeners } from "./events"
+import { attachEventListeners, attachKeyBoardShortcuts, attachNotepadKeyboardShortcuts } from "./events"
 import { notepad, monospaceMode } from "./selectors"
 import { createNewFileAndOpen, openNoteInEditor, SetDarkModeAndAddEventListener, updateFileList } from "./utilFunctions";
 
@@ -58,3 +58,5 @@ if (monospaceMode.checked) {
 
 // ALL EVENT LISTENERS HERE....
 attachEventListeners()
+attachKeyBoardShortcuts()
+attachNotepadKeyboardShortcuts()
