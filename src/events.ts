@@ -1,6 +1,6 @@
 
 import { handleMonospaceModeChange, searchElementInputHandler, themeToggleHandler, addFileHandler, backBtnClickHandler, fileNameInputHandler, notepadInputHandler, deleteCurrentFileHandler, exportBtnClickHandler, importBtnClickHandler, importFileHandler, openHelpModal, closeHelpModal } from "./eventHandlers";
-import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay } from "./selectors";
+import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay, helpModalCloseBtn } from "./selectors";
 import MouseTrap from "mousetrap"
 import { notepadShortcuts, shortcuts } from "./shortcuts";
 
@@ -34,6 +34,9 @@ export function attachEventListeners() {
   helpBtn.addEventListener("click", openHelpModal)
 
   helpModalOverlay.addEventListener("click", closeHelpModal)
+
+  helpModalCloseBtn.addEventListener("click", closeHelpModal)
+
 }
 
 

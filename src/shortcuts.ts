@@ -1,6 +1,6 @@
 import { ExtendedKeyboardEvent } from "mousetrap";
-import { addFileHandler, themeToggleHandler, toggleHelpModalHandler } from "./eventHandlers";
-import { searchElement, notepad } from "./selectors";
+import { addFileHandler, closeHelpModal, themeToggleHandler, toggleHelpModalHandler } from "./eventHandlers";
+import { searchElement, notepad, fileNameElement, helpModalContainer, importBtn, exportBtn, monospaceMode } from "./selectors";
 
 interface shortcut {
   keys: string | []
@@ -50,6 +50,64 @@ export const shortcuts: shortcutsType = {
       toggleHelpModalHandler()
     },
     description: "Toggle help modal"
+  },
+
+  RENAME_CURRENT_FILE: {
+    keys: "alt+r",
+    handler: (e: ExtendedKeyboardEvent) => {
+      e.preventDefault()
+      fileNameElement.focus()
+    },
+    description: "rename current file"
+  },
+
+  FOCUS_NOTEPAD: {
+    keys: "alt+w",
+    handler: (e: ExtendedKeyboardEvent) => {
+      e.preventDefault()
+      notepad.focus()
+    },
+    description: "focus writing pad"
+  },
+
+  ESCAPE_KEY_PRESSED: {
+    keys: "esc",
+    handler: (e: ExtendedKeyboardEvent) => {
+
+      if (helpModalContainer.classList.contains("show")) {
+        e.preventDefault()
+        closeHelpModal()
+      }
+
+    },
+    description: "close help modal"
+  },
+
+  IMPORT_FILE: {
+    keys: "alt+i",
+    handler: (e: ExtendedKeyboardEvent) => {
+      e.preventDefault()
+      importBtn.click()
+    },
+    description: "import file"
+  },
+
+  EXPORT_FILE: {
+    keys: "alt+e",
+    handler: (e: ExtendedKeyboardEvent) => {
+      e.preventDefault()
+      exportBtn.click()
+    },
+    description: "export file"
+  },
+
+  TOGGLE_MONOSPACE_MODE: {
+    keys: "alt+m",
+    handler: (e: ExtendedKeyboardEvent) => {
+      e.preventDefault()
+      monospaceMode.click()
+    },
+    description: "toggle monospace mode"
   }
 
 } as const;
