@@ -8,7 +8,9 @@ import { createHelpModal, createNewFileAndOpen, openNoteInEditor, SetDarkModeAnd
 
 registerSW({
   onNeedRefresh() { },
-  onOfflineReady() { },
+  onOfflineReady() {
+    alert("app is ready to work offline.")
+  },
 })
 
 
