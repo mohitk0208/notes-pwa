@@ -118,14 +118,14 @@ export function createNewFileAndOpen() {
   getAllNotes().then((allNotes) => {
     const filteredFilesNumbers = allNotes
       .filter((n) => {
-        return /untitled-\d+/.test(n.name);
+        return /^untitled-\d+$/.test(n.name);
       })
       .map((n) => {
         return Number(n.name.split("-")[1]);
       });
 
 
-    const lastFileNumber = Math.max(...filteredFilesNumbers);
+    const lastFileNumber = filteredFilesNumbers.length === 0 ? 0 : Math.max(...filteredFilesNumbers);
 
     openNoteInEditor(new Note(`untitled-${Number(lastFileNumber) + 1}`, ""));
     save();
