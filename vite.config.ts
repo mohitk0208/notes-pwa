@@ -5,7 +5,7 @@ export default defineConfig({
     VitePWA({
       includeAssets: ['favicon.svg', 'favicon.ico', 'robots.txt', 'images/*.jpg'],
       strategies: "generateSW",
-      registerType: "prompt",
+      registerType: "autoUpdate",
       workbox: {
         cleanupOutdatedCaches: true,
         sourcemap: true,
