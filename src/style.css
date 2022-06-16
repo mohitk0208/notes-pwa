@@ -627,6 +627,10 @@ input:checked + .slider:before {
   outline: 1px solid var(--border-color);
 }
 
+#filename::placeholder {
+  opacity: 0.3;
+}
+
 #notepad {
   font-family: "Fira Sans", sans-serif;
   width: 100%;
