@@ -651,6 +651,27 @@ input:checked + .slider:before {
   flex: 1;
   display: flex;
   padding-bottom: 0.5rem;
+  position: relative;
+}
+
+.notepad-textarea-wrapper .copy-notepad-content-btn {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.4rem;
+  padding: 0.2rem;
+  font-size: 1.5rem;
+  color: var(--gray-color);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: transform 200ms ease-in-out, color 200ms ease-in-out,
+    opacity 200ms ease-in-out;
+}
+
+.notepad-textarea-wrapper .copy-notepad-content-btn:hover {
+  opacity: 1;
+  transform: scale(1.2);
 }
 
 #notepad {

@@ -133,3 +133,12 @@ export const copyFileNameBtnHandler = () => {
     fileNameElement.select()
   }
 }
+
+export const copyNotepadContentBtnHandler = () => {
+
+  if (globalThis.note) {
+    navigator.clipboard.writeText(globalThis.note.content);
+    notepad.select()
+  }
+
+}
