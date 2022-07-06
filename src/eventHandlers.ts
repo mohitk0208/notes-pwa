@@ -126,3 +126,10 @@ export const closeHelpModal = () => {
 export const toggleHelpModalHandler = () => {
   helpModalContainer.classList.toggle("show");
 }
+
+export const copyFileNameBtnHandler = () => {
+  if (globalThis.note) {
+    navigator.clipboard.writeText(globalThis.note.name);
+    fileNameElement.select()
+  }
+}
