@@ -1,6 +1,6 @@
 
-import { handleMonospaceModeChange, searchElementInputHandler, themeToggleHandler, addFileHandler, backBtnClickHandler, fileNameInputHandler, notepadInputHandler, deleteCurrentFileHandler, exportBtnClickHandler, importBtnClickHandler, importFileHandler, openHelpModal, closeHelpModal, copyFileNameBtnHandler, copyNotepadContentBtnHandler } from "./eventHandlers";
-import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay, helpModalCloseBtn, copyFileNameBtn, copyNotepadContentBtn } from "./selectors";
+import { handleMonospaceModeChange, searchElementInputHandler, themeToggleHandler, addFileHandler, backBtnClickHandler, fileNameInputHandler, notepadInputHandler, deleteCurrentFileHandler, exportBtnClickHandler, importBtnClickHandler, importFileHandler, openHelpModal, closeHelpModal, copyFileNameBtnHandler, copyNotepadContentBtnHandler, downloadFileAsTxtHandler } from "./eventHandlers";
+import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay, helpModalCloseBtn, copyFileNameBtn, copyNotepadContentBtn, downloadBtn } from "./selectors";
 import MouseTrap from "mousetrap"
 import { notepadShortcuts, shortcuts } from "./shortcuts";
 
@@ -40,6 +40,8 @@ export function attachEventListeners() {
   copyFileNameBtn.addEventListener("click", copyFileNameBtnHandler)
 
   copyNotepadContentBtn.addEventListener("click", copyNotepadContentBtnHandler)
+
+  downloadBtn.addEventListener("click", downloadFileAsTxtHandler)
 
 }
 

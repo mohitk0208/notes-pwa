@@ -571,58 +571,40 @@ input:checked + .slider:before {
   display: -ms-flexbox;
   display: flex;
   padding: 0.3em 0;
-  /* margin: 0 0.5em; */
   -ms-flex-pack: distribute;
   justify-content: space-around;
   border-bottom: 1px solid var(--border-color);
   background-color: var(--file-head-cont-bg);
 }
 
-.file-head-container .copy-filename-btn {
-  padding: 0.2rem;
-  font-size: 1.5rem;
-  color: var(--gray-color);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  transition: transform 200ms ease-in-out, color 200ms ease-in-out;
-}
-
-.file-head-container .copy-filename-btn:hover {
-  transform: scale(1.2);
-}
-
+.file-head-container .download-btn,
+.file-head-container .copy-filename-btn,
 .file-head-container .current-delete-btn {
   padding: 0.2rem;
   font-size: 1.5rem;
   font-weight: bold;
-
   background-color: transparent;
   border: none;
-  color: var(--red);
   cursor: pointer;
-
-  -webkit-transition: color 200ms ease-in-out,
-    -webkit-transform 200ms ease-in-out;
-
-  transition: color 200ms ease-in-out, -webkit-transform 200ms ease-in-out;
-
-  -o-transition: transform 200ms ease-in-out, color 200ms ease-in-out;
-
   transition: transform 200ms ease-in-out, color 200ms ease-in-out;
-
-  transition: transform 200ms ease-in-out, color 200ms ease-in-out,
-    -webkit-transform 200ms ease-in-out;
 }
 
+.file-head-container .download-btn,
+.file-head-container .copy-filename-btn {
+  color: var(--gray-color);
+}
+
+.file-head-container .current-delete-btn {
+  color: var(--red);
+}
+
+.file-head-container .download-btn:hover,
+.file-head-container .copy-filename-btn:hover,
 .file-head-container .current-delete-btn:hover {
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
 .file-head-container #filename {
-  /* flex-grow: 1; */
   width: 90%;
 }
 
@@ -679,8 +661,6 @@ input:checked + .slider:before {
   height: 100%;
   display: block;
   flex: 1;
-  /* min-height: 100%; */
-  /* overflow: hidden; */
   border-radius: 2px;
 
   display: block;
@@ -799,8 +779,6 @@ input:checked + .slider:before {
   padding: 0.1rem 0.7rem;
   border-radius: 0.4rem;
 }
-/* .help-modal--shortcut__desc {
-} */
 
 .center {
   margin: auto;

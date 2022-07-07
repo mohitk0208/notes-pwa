@@ -26,3 +26,4 @@ export const helpModalShortcutKey = document.querySelector(".help-modal--shortcu
 export const helpModalShortcutDescription = document.querySelector(".help-modal--shortcut__desc") as HTMLParagraphElement;
 export const copyFileNameBtn = document.querySelector(".copy-filename-btn") as HTMLButtonElement;
 export const copyNotepadContentBtn = document.querySelector(".copy-notepad-content-btn") as HTMLButtonElement;
+export const downloadBtn = document.querySelector(".download-btn") as HTMLButtonElement;
