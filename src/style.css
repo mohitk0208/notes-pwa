@@ -589,6 +589,7 @@ input:checked + .slider:before {
   transition: transform 200ms ease-in-out, color 200ms ease-in-out;
 }
 
+.file-head-container .download-btn,
 .file-head-container .copy-filename-btn {
   color: var(--gray-color);
 }
