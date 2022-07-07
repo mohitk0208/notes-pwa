@@ -816,6 +816,52 @@ input:checked + .slider:before {
   border: none;
 }
 
+.tooltip {
+  position: relative;
+}
+
+.tooltip-bottom::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-left::after {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-right::after {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-top::after {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  font-size: 0.8rem;
+  background-color: var(--text-color);
+  color: var(--notepad-cont-bg);
+  padding: 0.3rem 0.4rem;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) {
 }
