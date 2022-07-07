@@ -31,10 +31,16 @@
       <!-- left panel -->
       <div class="left-panel">
         <div class="utility-btns-container">
-          <button class="help-btn remove-btn-style">
+          <button
+            class="help-btn remove-btn-style tooltip tooltip-bottom"
+            data-tooltip="alt+h"
+          >
             <span class="material-icons-round"> help_outline </span>
           </button>
-          <button class="mode-btn remove-btn-style">
+          <button
+            class="mode-btn remove-btn-style tooltip tooltip-bottom"
+            data-tooltip="alt+t"
+          >
             <span class="material-icons-round"> dark_mode </span>
           </button>
         </div>
@@ -55,11 +61,24 @@
               style="display: none"
               accept=".json"
             />
-            <button class="outline-btn import-btn">import</button>
-            <button class="outline-btn export-btn">export</button>
+            <button
+              class="outline-btn import-btn tooltip tooltip-bottom"
+              data-tooltip="alt+i"
+            >
+              import
+            </button>
+            <button
+              class="outline-btn export-btn tooltip tooltip-bottom"
+              data-tooltip="alt+e"
+            >
+              export
+            </button>
           </div>
           <div class="add-btn-container">
-            <button class="add-btn remove-btn-style">
+            <button
+              class="add-btn remove-btn-style tooltip tooltip-bottom"
+              data-tooltip="alt+n"
+            >
               <span class="material-icons-round"> note_add </span>
               <span>Add new File</span>
             </button>
@@ -91,10 +110,16 @@
             spellcheck="false"
             placeholder="Enter File Name"
           />
-          <button class="copy-filename-btn remove-btn-style">
+          <button
+            class="copy-filename-btn remove-btn-style tooltip tooltip-bottom"
+            data-tooltip="copy filename"
+          >
             <span class="material-icons-round"> content_copy </span>
           </button>
-          <button class="current-delete-btn">
+          <button
+            class="current-delete-btn tooltip tooltip-left"
+            data-tooltip="delete current file"
+          >
             <span class="material-icons-round"> delete_forever </span>
           </button>
         </div>
@@ -105,7 +130,10 @@
             placeholder="start writing from here..."
             spellcheck="false"
           ></textarea>
-          <button class="copy-notepad-content-btn remove-btn-style">
+          <button
+            class="copy-notepad-content-btn remove-btn-style tooltip tooltip-left"
+            data-tooltip="copy text"
+          >
             <span class="material-icons-round"> content_copy </span>
           </button>
         </div>

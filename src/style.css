@@ -249,7 +249,6 @@ body.dark .left-panel::after {
   font-size: 1.2rem;
 
   font-weight: bold;
-  text-transform: uppercase;
   background-color: transparent;
   color: var(--text-color);
   padding: 0.5rem;
@@ -814,6 +813,53 @@ input:checked + .slider:before {
 .remove-btn-style {
   outline: none;
   border: none;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip-bottom::after {
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip-left::after {
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-right::after {
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tooltip-top::after {
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  font-size: 0.8rem;
+  background-color: var(--text-color);
+  color: var(--notepad-cont-bg);
+  padding: 0.3rem 0.4rem;
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+  pointer-events: none;
+  z-index: 1000;
+  text-transform: uppercase;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
 }
 
 /* Small devices (landscape phones, 576px and up) */
