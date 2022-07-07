@@ -249,7 +249,6 @@ body.dark .left-panel::after {
   font-size: 1.2rem;
 
   font-weight: bold;
-  text-transform: uppercase;
   background-color: transparent;
   color: var(--text-color);
   padding: 0.5rem;
@@ -856,6 +855,7 @@ input:checked + .slider:before {
   transition: opacity 200ms ease-in-out;
   pointer-events: none;
   z-index: 1000;
+  text-transform: uppercase;
 }
 
 .tooltip:hover::after {
