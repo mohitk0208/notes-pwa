@@ -719,7 +719,6 @@ input:checked + .slider:before {
   transform: translate(-50%, -50%) scale(0.5);
   transition: transform 200ms ease-in-out;
   box-shadow: 0 0.5rem 5rem rgba(0, 0, 0, 0.5);
-  opacity: 0.9;
 }
 
 .help-modal-container.show .help-modal {
