@@ -30,7 +30,7 @@
 ## About The Project
 
 <p align="center">
-    <img width="800px" src="https://user-images.githubusercontent.com/61026761/123813418-82153a00-d912-11eb-8b7c-deb2009edb3c.gif"><br><br>
+    <img width="800px" src="https://user-images.githubusercontent.com/61026761/179017144-314ebda5-8035-47c5-a549-f478d83b9918.gif"><br><br>
 </p>
 
 This is a simple web app for taking quick notes and not worry about saving it, just open a [notes-pwa](https://notes-ysau.pages.dev/) tab write whatever you want and close the tab as simple as that, you can find your notes whenever you reopen the page.
@@ -42,14 +42,17 @@ Some features of this app:
 - Supports multiple files
 - No installation required
 - import or export your saved notes
+- can also download notes in .txt format
 
 ### Built With
 
 Notes-pwa works totally offline using modern browser APIs to store and edit data locally this is achieved using:
 
-- [JavaScript](https://www.javascript.com/)
+- [Typescript](https://www.typescriptlang.org/docs/)
 - [Service Workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 - [Indexed DB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)
+- [Workbox](https://developer.chrome.com/docs/workbox/)
+- [vitejs](https://vitejs.dev/)
 
 <p align="center">
     <img width="200px" src="https://user-images.githubusercontent.com/3104648/28351989-7f68389e-6c4b-11e7-9bf2-e9fcd4977e7a.png">
