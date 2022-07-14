@@ -48,8 +48,13 @@ export function attachEventListeners() {
 
 export function attachNotepadKeyboardShortcuts() {
 
-  Object.keys(notepadShortcuts).forEach(key => {
-    MouseTrap(notepad).bind(notepadShortcuts[key].keys, notepadShortcuts[key].handler)
+  Object.keys(notepadShortcuts).forEach(shortcut_name => {
+
+    notepadShortcuts[shortcut_name].keys.forEach(combination => {
+
+      MouseTrap(notepad).bind(combination.join("+"), notepadShortcuts[shortcut_name].handler);
+    })
+
   })
 }
 
@@ -57,20 +62,23 @@ export function attachNotepadKeyboardShortcuts() {
 
 export function attachKeyBoardShortcuts() {
 
-  Object.keys(shortcuts).forEach(key => {
-    MouseTrap.bind(shortcuts[key].keys, shortcuts[key].handler)
+  const focusableElements = [notepad, searchElement, fileNameElement];
+
+  Object.keys(shortcuts).forEach(shortcut_name => {
+
+    shortcuts[shortcut_name].keys.forEach(combination => {
+      MouseTrap.bind(combination.join("+"), shortcuts[shortcut_name].handler)
+    })
+
   })
 
-  Object.keys(shortcuts).forEach(key => {
-    MouseTrap(notepad).bind(shortcuts[key].keys, shortcuts[key].handler)
-  })
+  focusableElements.forEach(element => {
+    Object.keys(shortcuts).forEach(shortcut_name => {
 
-  Object.keys(shortcuts).forEach(key => {
-    MouseTrap(searchElement).bind(shortcuts[key].keys, shortcuts[key].handler)
-  })
-
-  Object.keys(shortcuts).forEach(key => {
-    MouseTrap(fileNameElement).bind(shortcuts[key].keys, shortcuts[key].handler)
+      shortcuts[shortcut_name].keys.forEach(combination => {
+        MouseTrap(element).bind(combination.join("+"), shortcuts[shortcut_name].handler)
+      })
+    })
   })
 
 }
