@@ -29,8 +29,9 @@
 
 ## About The Project
 
+
 <p align="center">
-    <img width="800px" src="https://user-images.githubusercontent.com/61026761/123813418-82153a00-d912-11eb-8b7c-deb2009edb3c.gif"><br><br>
+    <img width="800px" src="https://user-images.githubusercontent.com/61026761/179017144-314ebda5-8035-47c5-a549-f478d83b9918.gif"><br><br>
 </p>
 
 This is a simple web app for taking quick notes and not worry about saving it, just open a [notes-pwa](https://notes-ysau.pages.dev/) tab write whatever you want and close the tab as simple as that, you can find your notes whenever you reopen the page.
