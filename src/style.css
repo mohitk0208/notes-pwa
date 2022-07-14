@@ -718,6 +718,8 @@ input:checked + .slider:before {
   border-radius: 1rem;
   transform: translate(-50%, -50%) scale(0.5);
   transition: transform 200ms ease-in-out;
+  box-shadow: 0 0.5rem 5rem rgba(0, 0, 0, 0.5);
+  opacity: 0.9;
 }
 
 .help-modal-container.show .help-modal {
@@ -767,17 +769,28 @@ input:checked + .slider:before {
   width: 80%;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2.3fr 4fr;
+  padding: 0.2rem 0;
+  gap: 1rem;
 }
 
 .help-modal--shortcut__keys {
   text-align: center;
+  font-size: 0.9rem;
+  color: var(--orange);
 }
 
 .help-modal--shortcut__keys span {
+  color: var(--text-color);
+}
+
+.help-modal--shortcut__keys span span {
   background-color: var(--file-selected-bg);
   padding: 0.1rem 0.7rem;
   border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+  box-shadow: 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 
 .center {

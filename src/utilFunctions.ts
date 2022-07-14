@@ -197,18 +197,16 @@ export async function importData(notes: Note[]) {
 
 }
 
-function createShortcutHTMLElement(keys: string | [], description: string) {
+function createShortcutHTMLElement(keys: readonly (readonly string[])[], description: string) {
 
   const shortcut = document.createElement("div");
   shortcut.classList.add("help-modal--shortcut");
 
   const keysElement = document.createElement("p");
   keysElement.classList.add("help-modal--shortcut__keys");
-  keysElement.innerHTML = `
-  <span>
-  ${typeof keys !== "string" ? keys.join(" or ") : keys}
-  </span>
-  `
+
+  keysElement.innerHTML = keys.map(key => `<span>${key.map(k => `<span>${k}</span>`).join(" + ")}</span>`).join(" or ");
+
 
   const descriptionElement = document.createElement("p");
   descriptionElement.classList.add("help-modal--shortcut__desc");
@@ -230,7 +228,6 @@ export function createHelpModal() {
   })
 
   helpModalBody.appendChild(fragment);
-
 
 }
 

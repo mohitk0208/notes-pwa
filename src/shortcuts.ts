@@ -3,7 +3,7 @@ import { addFileHandler, closeHelpModal, themeToggleHandler, toggleHelpModalHand
 import { searchElement, notepad, fileNameElement, helpModalContainer, importBtn, exportBtn, monospaceMode } from "./selectors";
 
 interface shortcut {
-  keys: string | []
+  keys: readonly (readonly string[])[]  // array is for multiple shortcuts for the same action
   handler: (e: ExtendedKeyboardEvent) => void,
   description: string
 }
@@ -16,7 +16,7 @@ interface shortcutsType {
 export const shortcuts: shortcutsType = {
 
   NEW_FILE: {
-    keys: "alt+n",
+    keys: [["alt", "n"], ["ctrl", "n"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       addFileHandler()
@@ -26,7 +26,7 @@ export const shortcuts: shortcutsType = {
   },
 
   TOGGLE_THEME: {
-    keys: "alt+t",
+    keys: [["alt", "t"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       themeToggleHandler()
@@ -35,7 +35,7 @@ export const shortcuts: shortcutsType = {
   },
 
   FOCUS_FILE_SEARCH: {
-    keys: "alt+s",
+    keys: [["alt", "s"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       searchElement.focus()
@@ -44,7 +44,7 @@ export const shortcuts: shortcutsType = {
   },
 
   TOGGLE_HELP: {
-    keys: "alt+h",
+    keys: [["alt", "h"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       toggleHelpModalHandler()
@@ -53,7 +53,7 @@ export const shortcuts: shortcutsType = {
   },
 
   RENAME_CURRENT_FILE: {
-    keys: "alt+r",
+    keys: [["alt", "r"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       fileNameElement.focus()
@@ -62,7 +62,7 @@ export const shortcuts: shortcutsType = {
   },
 
   FOCUS_NOTEPAD: {
-    keys: "alt+w",
+    keys: [["alt", "w"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       notepad.focus()
@@ -71,7 +71,7 @@ export const shortcuts: shortcutsType = {
   },
 
   ESCAPE_KEY_PRESSED: {
-    keys: "esc",
+    keys: [["esc"]],
     handler: (e: ExtendedKeyboardEvent) => {
 
       if (helpModalContainer.classList.contains("show")) {
@@ -84,7 +84,7 @@ export const shortcuts: shortcutsType = {
   },
 
   IMPORT_FILE: {
-    keys: "alt+i",
+    keys: [["alt", "i"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       importBtn.click()
@@ -93,7 +93,7 @@ export const shortcuts: shortcutsType = {
   },
 
   EXPORT_FILE: {
-    keys: "alt+e",
+    keys: [["alt", "e"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       exportBtn.click()
@@ -102,7 +102,7 @@ export const shortcuts: shortcutsType = {
   },
 
   TOGGLE_MONOSPACE_MODE: {
-    keys: "alt+m",
+    keys: [["alt", "m"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       monospaceMode.click()
@@ -116,7 +116,7 @@ export const shortcuts: shortcutsType = {
 export const notepadShortcuts: shortcutsType = {
 
   INSERT_WHITESPACE_ON_TAB_PRESS: {
-    keys: "tab",
+    keys: [["tab"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault();
       var start = notepad.selectionStart;
