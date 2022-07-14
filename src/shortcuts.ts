@@ -16,7 +16,7 @@ interface shortcutsType {
 export const shortcuts: shortcutsType = {
 
   NEW_FILE: {
-    keys: [["alt", "n"], ["ctrl", "n"]],
+    keys: [["alt", "n"]],
     handler: (e: ExtendedKeyboardEvent) => {
       e.preventDefault()
       addFileHandler()
