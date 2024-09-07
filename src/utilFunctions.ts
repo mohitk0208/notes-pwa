@@ -115,7 +115,16 @@ export function checkAndRemoveClass(element: HTMLElement, className: string) {
 
 export function createNewFileAndOpen() {
   setIndicatorStatusColor("SAVING");
-  getAllNotes().then((allNotes) => {
+  generateUntitledFileName().then((fileName) => {
+
+    openNoteInEditor(new Note(fileName, ""));
+    save();
+    updateFileList()
+  })
+}
+
+export function generateUntitledFileName() {
+  return getAllNotes().then((allNotes) => {
     const filteredFilesNumbers = allNotes
       .filter((n) => {
         return /^untitled-\d+$/.test(n.name);
@@ -127,10 +136,23 @@ export function createNewFileAndOpen() {
 
     const lastFileNumber = filteredFilesNumbers.length === 0 ? 0 : Math.max(...filteredFilesNumbers);
 
-    openNoteInEditor(new Note(`untitled-${Number(lastFileNumber) + 1}`, ""));
-    save();
-    updateFileList()
-  });
+    let fileName = `untitled-${Number(lastFileNumber) + 1}`
+
+    return fileName;
+  })
+}
+
+export function generateFilenameByText(text: string) {
+
+  text = text.trim()
+
+  if (text.length == 0) {
+    return "";
+  }
+
+  let firstLine = text.split("\n")[0].trim();
+
+  return firstLine.substring(0, Math.min(20, text.length))
 }
 
 
@@ -138,6 +160,12 @@ export function openNoteInEditor(n: Note) {
   note = n; // set the global note object
   fileNameElement.value = n.name;
   notepad.value = n.content;
+
+  // for backward compatibility with old notes that do not have isTitleManual property defined
+  if (n.isTitleManual === undefined || n.isTitleManual === null) {
+    note.isTitleManual = true;
+  }
+
   localStorage.setItem("currentFileId", n.id);
 }
 
@@ -231,4 +259,11 @@ export function createHelpModal() {
 
 }
 
+export function updateFileName(filename: string) {
 
+  fileNameElement.value = filename;
+  let fileElement = document.querySelector(`p[data-note-id="${note?.id}"]`)!;
+
+  fileElement.innerHTML = `<span class="material-icons-round">description</span> ${filename}`;
+
+}
