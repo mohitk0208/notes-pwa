@@ -1,8 +1,9 @@
 
 import { handleMonospaceModeChange, searchElementInputHandler, themeToggleHandler, addFileHandler, backBtnClickHandler, fileNameInputHandler, notepadInputHandler, deleteCurrentFileHandler, exportBtnClickHandler, importBtnClickHandler, importFileHandler, openHelpModal, closeHelpModal, copyFileNameBtnHandler, copyNotepadContentBtnHandler, downloadFileAsTxtHandler } from "./eventHandlers";
-import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay, helpModalCloseBtn, copyFileNameBtn, copyNotepadContentBtn, downloadBtn } from "./selectors";
+import { notepad, fileNameElement, addFileBtn, backBtn, currentDeleteBtn, modeBtn, searchElement, monospaceMode, importBtn, exportBtn, importFile, helpBtn, helpModalOverlay, helpModalCloseBtn, copyFileNameBtn, copyNotepadContentBtn, downloadBtn, confirmModalCloseBtn, confirmModalOverlay } from "./selectors";
 import MouseTrap from "mousetrap"
 import { notepadShortcuts, shortcuts } from "./shortcuts";
+import { closeConfirmModal } from "./utilFunctions";
 
 
 
@@ -42,6 +43,10 @@ export function attachEventListeners() {
   copyNotepadContentBtn.addEventListener("click", copyNotepadContentBtnHandler)
 
   downloadBtn.addEventListener("click", downloadFileAsTxtHandler)
+
+  confirmModalCloseBtn.addEventListener("click", closeConfirmModal)
+
+  confirmModalOverlay.addEventListener("click", closeConfirmModal)
 
 }
 

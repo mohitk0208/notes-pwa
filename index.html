@@ -147,16 +147,40 @@
       </div>
     </div>
 
-    <div class="help-modal-container">
-      <div class="help-modal-overlay"></div>
-      <div class="help-modal">
-        <div class="help-modal--header">
-          <h2 class="help-modal--header__heading">Keyboard Shortcuts</h2>
-          <button class="help-modal--close-btn remove-btn-style">
+    <div class="modal-container help-modal-container">
+      <div class="modal-overlay help-modal-overlay"></div>
+      <div class="modal help-modal">
+        <div class="modal--header help-modal--header">
+          <h2 class="modal--header__heading help-modal--header__heading">
+            Keyboard Shortcuts
+          </h2>
+          <button
+            class="modal--close-btn help-modal--close-btn remove-btn-style"
+          >
             <span class="material-icons-round"> close </span>
           </button>
         </div>
-        <div class="help-modal--body"></div>
+        <div class="modal--body help-modal--body"></div>
+      </div>
+    </div>
+
+    <div class="modal-container confirm-modal">
+      <div class="modal-overlay confirm-overlay"></div>
+      <div class="modal confirm-modal">
+        <div class="modal--header confirm-modal--header">
+          <h2
+            class="modal--header__heading confirm-modal--header__heading"
+          ></h2>
+          <button
+            class="modal--close-btn confirm-modal--close-btn remove-btn-style"
+          >
+            <span class="material-icons-round"> close </span>
+          </button>
+        </div>
+        <div class="modal--body confirm-modal--body">
+          <p class="confirm-modal--body__text"></p>
+        </div>
+        <div class="confirm-modal--actions"></div>
       </div>
     </div>
 

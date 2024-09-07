@@ -1,6 +1,6 @@
 import { addOrUpdateNote, deleteNote, getAllNotes, getFileByIndex, getNote, getTotalFiles } from "./indexedDb";
 import Note from "./Note";
-import { body, appContainer, indicator, notepad, fileNameElement, filesContainer, searchElement, helpModalBody } from "./selectors"
+import { body, appContainer, indicator, notepad, fileNameElement, filesContainer, searchElement, helpModalBody, confirmModalHeaderHeading, confirmModalBodyText, confirmModal, confirmModalActions } from "./selectors"
 import { shortcuts } from "./shortcuts";
 
 
@@ -80,11 +80,10 @@ export function createHTMLFile(localNote: Note, selected = false) {
   button.classList.add(...["delete-btn", "remove-btn-style"]);
   button.setAttribute("data-note-id", localNote.id);
 
-  button.addEventListener("click", async (e) => {
+  button.addEventListener("click", (e) => {
     e.stopPropagation(); // to prevent the event bubbling triggering event on th div
 
-    // delete the file
-    await deleteAndUpdateEnvironment(localNote.id);
+    handleFileDelete(localNote);
   });
 
   div.appendChild(p);
@@ -266,4 +265,50 @@ export function updateFileName(filename: string) {
 
   fileElement.innerHTML = `<span class="material-icons-round">description</span> ${filename}`;
 
+}
+
+
+export function createAndOpenConfirmModal(heading: string, message: string, confirmHandler: () => void) {
+
+  confirmModalHeaderHeading.innerText = heading;
+  confirmModalBodyText.innerText = message;
+
+  confirmModalActions.innerHTML = '';
+
+  const confirmModalActionsConfirmBtn = document.createElement("button");
+  confirmModalActionsConfirmBtn.innerHTML = '<span class="material-icons-round"> delete_forever </span> CONFIRM';
+  confirmModalActionsConfirmBtn.classList.add("confirm-modal--actions__confirm-btn", "outline-btn");
+
+  confirmModalActionsConfirmBtn.addEventListener("click", () => {
+    confirmHandler();
+    closeConfirmModal();
+  });
+  confirmModalActions.appendChild(confirmModalActionsConfirmBtn);
+
+
+  const confirmModalActionsCancelBtn = document.createElement("button");
+  confirmModalActionsCancelBtn.innerHTML = "CANCEL";
+  confirmModalActionsCancelBtn.classList.add("confirm-modal--actions__cancel-btn");
+  confirmModalActions.appendChild(confirmModalActionsCancelBtn);
+
+  confirmModalActionsCancelBtn.addEventListener("click", closeConfirmModal);
+
+  if (!confirmModal.classList.contains("show")) {
+    confirmModal.classList.add("show");
+  }
+}
+
+
+export function closeConfirmModal() {
+  if (confirmModal.classList.contains("show")) {
+    confirmModal.classList.remove("show");
+  }
+}
+
+export function handleFileDelete(note: Note) {
+  createAndOpenConfirmModal(
+    "Confirm File Delete",
+    `Are you sure you want to delete "${note.name}"?`,
+    async () => await deleteAndUpdateEnvironment(note.id)
+  )
 }
