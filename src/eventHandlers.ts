@@ -1,6 +1,6 @@
 import { body, appContainer, notepad, fileNameElement, modeBtn, monospaceMode, importFile, helpModalContainer } from "./selectors"
 
-import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, deleteAndUpdateEnvironment, exportData, importData, save, setIndicatorStatusColor, updateFileList } from "./utilFunctions"
+import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, deleteAndUpdateEnvironment, exportData, importData, save, setIndicatorStatusColor, updateFileList, generateUntitledFileName, generateFilenameByText, updateFileName } from "./utilFunctions"
 
 export const handleMonospaceModeChange = () => {
   if (monospaceMode.checked)
@@ -44,19 +44,40 @@ export const backBtnClickHandler = () => {
 export const fileNameInputHandler = () => {
   if (globalThis.note) {
     globalThis.note.name = fileNameElement.value;
+    globalThis.note.isTitleManual = true;
+
+    updateFileName(fileNameElement.value);
   }
 
-  const fileElement = document.querySelector(`p[data-note-id="${note?.id}"]`)!;
-
-  fileElement.innerHTML = `<span class="material-icons-round">description</span> ${fileNameElement.value}`;
 
   setIndicatorStatusColor("SAVING");
   clearTimeoutIfExistAndCallSaveFunctionWithTimeout();
 }
 
-export const notepadInputHandler = () => {
+export const notepadInputHandler = async () => {
   if (globalThis.note) {
     globalThis.note.content = notepad.value;
+
+    let isContentEmpty = globalThis.note.content.trim() === "";
+    let isTitleManual = globalThis.note.isTitleManual;
+    let isTitleEmpty = globalThis.note.name === "";
+
+    if (isContentEmpty && !isTitleManual) {
+      let fileName = await generateUntitledFileName()
+
+      globalThis.note.name = fileName;
+      globalThis.note.isTitleManual = false;
+    }
+    else if (!isContentEmpty && !isTitleManual) {
+      globalThis.note.name = generateFilenameByText(globalThis.note.content);
+      globalThis.note.isTitleManual = false;
+    }
+    else if (!isContentEmpty && isTitleManual && isTitleEmpty) {
+      globalThis.note.name = generateFilenameByText(globalThis.note.content);
+      globalThis.note.isTitleManual = false;
+    }
+
+    updateFileName(globalThis.note.name);
   }
 
   setIndicatorStatusColor("SAVING");
