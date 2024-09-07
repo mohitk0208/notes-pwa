@@ -1,6 +1,6 @@
 import { body, appContainer, notepad, fileNameElement, modeBtn, monospaceMode, importFile, helpModalContainer } from "./selectors"
 
-import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, deleteAndUpdateEnvironment, exportData, importData, save, setIndicatorStatusColor, updateFileList, generateUntitledFileName, generateFilenameByText, updateFileName } from "./utilFunctions"
+import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, exportData, importData, save, setIndicatorStatusColor, updateFileList, generateUntitledFileName, generateFilenameByText, updateFileName, handleFileDelete } from "./utilFunctions"
 
 export const handleMonospaceModeChange = () => {
   if (monospaceMode.checked)
@@ -31,6 +31,7 @@ export const themeToggleHandler = () => {
 
 
 export const addFileHandler = () => {
+  save();
   createNewFileAndOpen();
   updateFileList();
 }
@@ -86,7 +87,7 @@ export const notepadInputHandler = async () => {
 
 export const deleteCurrentFileHandler = async () => {
   if (globalThis.note) {
-    await deleteAndUpdateEnvironment(globalThis.note.id);
+    handleFileDelete(globalThis.note);
   }
   appContainer.classList.add("left");
 }
