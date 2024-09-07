@@ -310,11 +310,14 @@ body.dark .left-panel::after {
   cursor: pointer;
 }
 
-/* .options-container button {
-  padding: 0.5em;
-} */
+.files-action-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
 
-.options-container .add-btn {
+.files-action-container .add-btn {
   background-color: transparent;
   padding: 0.5rem;
   color: var(--border-color);
@@ -337,12 +340,36 @@ body.dark .left-panel::after {
   gap: 5px;
 }
 
-/* .options-container .add-btn span {
-	display: inline-block
-} */
+.files-action-container .purge-btn {
+  background-color: transparent;
+  padding: 0.3rem 0.5rem;
+  color: var(--border-color);
+  border: 1px solid var(--border-color);
+  font-weight: bold;
+  font-size: 1rem;
+  border-radius: 5px;
+  -webkit-transition: background-color 100ms ease;
+  -o-transition: background-color 100ms ease;
+  transition: background-color 100ms ease;
+  cursor: pointer;
 
-.options-container .add-btn:hover,
-.options-container .add-btn:focus {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.files-action-container .add-btn:hover,
+.files-action-container .add-btn:focus {
+  background-color: var(--border-color);
+  color: var(--site-bg);
+}
+
+.files-action-container .purge-btn:hover,
+.files-action-container .purge-btn:focus {
   background-color: var(--border-color);
   color: var(--site-bg);
 }
@@ -853,7 +880,7 @@ input:checked + .slider:before {
 }
 
 .tooltip-bottom::after {
-  top: 100%;
+  top: 110%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -889,6 +916,7 @@ input:checked + .slider:before {
   pointer-events: none;
   z-index: 1000;
   text-transform: uppercase;
+  min-width: 5rem;
 }
 
 .tooltip:hover::after {

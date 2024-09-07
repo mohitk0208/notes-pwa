@@ -1,6 +1,6 @@
 import { body, appContainer, notepad, fileNameElement, modeBtn, monospaceMode, importFile, helpModalContainer } from "./selectors"
 
-import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, exportData, importData, save, setIndicatorStatusColor, updateFileList, generateUntitledFileName, generateFilenameByText, updateFileName, handleFileDelete } from "./utilFunctions"
+import { clearTimeoutIfExistAndCallSaveFunctionWithTimeout, createNewFileAndOpen, exportData, importData, save, setIndicatorStatusColor, updateFileList, generateUntitledFileName, generateFilenameByText, updateFileName, handleFileDelete, createAndOpenConfirmModal, purgeEmptyFiles } from "./utilFunctions"
 
 export const handleMonospaceModeChange = () => {
   if (monospaceMode.checked)
@@ -178,4 +178,14 @@ export const downloadFileAsTxtHandler = () => {
     element.click()
     document.body.removeChild(element)
   }
+}
+
+export const purgeBtnClickHandler = (e: MouseEvent) => {
+  e.stopPropagation();
+
+  createAndOpenConfirmModal(
+    "Purge Empty Files",
+    "Are you sure you want to remove all empty files from the list?",
+    async () => await purgeEmptyFiles()
+  )
 }

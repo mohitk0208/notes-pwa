@@ -279,8 +279,8 @@ export function createAndOpenConfirmModal(heading: string, message: string, conf
   confirmModalActionsConfirmBtn.innerHTML = '<span class="material-icons-round"> delete_forever </span> CONFIRM';
   confirmModalActionsConfirmBtn.classList.add("confirm-modal--actions__confirm-btn", "outline-btn");
 
-  confirmModalActionsConfirmBtn.addEventListener("click", () => {
-    confirmHandler();
+  confirmModalActionsConfirmBtn.addEventListener("click", async () => {
+    await confirmHandler();
     closeConfirmModal();
   });
   confirmModalActions.appendChild(confirmModalActionsConfirmBtn);
@@ -311,4 +311,31 @@ export function handleFileDelete(note: Note) {
     `Are you sure you want to delete "${note.name}"?`,
     async () => await deleteAndUpdateEnvironment(note.id)
   )
+}
+
+export async function purgeEmptyFiles() {
+
+  const notes = await getAllNotes();
+  let isSelectedFileDeleted = false;
+
+  for (const localNote of notes) {
+
+    if (localNote.content.trim() === "") {
+      await deleteNote(localNote.id);
+
+      if (localNote.id === note?.id) isSelectedFileDeleted = true;
+    }
+  }
+
+  const count = await getTotalFiles();
+
+  if (count === 0) createNewFileAndOpen();
+  else if (isSelectedFileDeleted) {
+    const firstNote = await getFileByIndex(count - 1);
+
+    openNoteInEditor(firstNote);
+  }
+
+  updateFileList();
+
 }
