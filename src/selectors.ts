@@ -35,3 +35,4 @@ export const confirmModalBody = document.querySelector(".confirm-modal--body") a
 export const confirmModalBodyText = document.querySelector(".confirm-modal--body__text") as HTMLParagraphElement;
 export const confirmModalCloseBtn = document.querySelector(".confirm-modal--close-btn") as HTMLButtonElement;
 export const confirmModalActions = document.querySelector(".confirm-modal--actions") as HTMLDivElement;
+export const purgeBtn = document.querySelector(".purge-btn") as HTMLButtonElement;
